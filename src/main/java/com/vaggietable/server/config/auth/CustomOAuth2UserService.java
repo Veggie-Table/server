@@ -1,5 +1,6 @@
 package com.vaggietable.server.config.auth;
 import com.vaggietable.server.domain.User;
+import com.vaggietable.server.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -16,7 +17,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    private final com.vaggietable.server.mapper.userMapper userMapper;
+    private final UserMapper userMapper;
     private final HttpSession httpSession;
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
