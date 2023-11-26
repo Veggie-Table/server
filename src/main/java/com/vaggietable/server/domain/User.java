@@ -14,13 +14,13 @@ public class User{
     private Role role;
 
     @Builder
-    public User(String nickname, String email,Role role) {
-        this.nickname = nickname;
+    public User(String name, String email,Role role) {
+        this.name = name;
         this.email = email;
         this.role = role;
     }
 
-    public User update(String name) {
+    public User update(String nickname) {
         this.nickname = nickname;
         return this;
     }
