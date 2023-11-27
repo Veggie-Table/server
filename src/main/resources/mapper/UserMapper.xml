@@ -3,14 +3,19 @@
 <mapper namespace="com.vaggietable.server.mapper.UserMapper">
 
     <insert id="save"  useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user.user(name,email,role) VALUES(#{name}, #{email}, #{role})
+        INSERT INTO `user` (`name`,`email`) VALUES(#{name}, #{email})
     </insert>
     <select id="findByEmail" resultType="com.vaggietable.server.domain.User">
-        SELECT * FROM user.user WHERE email = #{email}
+        SELECT
+            `name`,
+            `email`,
+            `nickname`
+        FROM `user`
+        WHERE `email` = #{email}
     </select>
 
     <select id="findNicknameById" parameterType="String" resultType="com.vaggietable.server.domain.User">
-        select nickname from User where email = #{email}
+        select `nickname` from `User` where `email` = #{email}
     </select>
 
 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
+    <title>Title</title>
+    <style>
+        section.nick-section {
+            font-family: Pretendard;
+            margin-left:15px;
+        }
+
+
+        .text{
+
+            font-size: 20px;
+            margin-bottom:10px;
+            margin-top: 50px;
+
+        }
+        .text2{
+            width: 226px;
+            height: 28px;
+            top: 176px;
+            left: 31px;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+            text-align: left;
+            color:#535654;
+            margin-bottom:150px;
+        }
+        input {
+            font-size: 12px;
+            border: none;
+            font-family: Pretendard;
+            margin-bottom:200px;
+        }
+        input::placeholder {
+            font-size: 12px;
+            font-family: Pretendard;
+        }
+        input:focus {
+            outline: none;
+        }
+        input:focus::placeholder {
+            opacity: 0;
+        }
+
+        .start_btn{
+            display: inline-block;
+            padding: 0;
+            border: none;
+            background: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<section class="nick-section">
+    <h1 class="title">회원 가입</h1>
+    <div class="text">Veggie Table 이용을 위해<br><b>닉네임</b>을 입력해주세요.</div>
+    <div class ="text2">닉네임은 맛집 리뷰 작성시 노출될 수 있어요.<br>닉네임은 언제든지 변경할 수 있어요.</div>
+    <div class="nick">
+        <input type="text" name="Nickname" placeholder="닉네임을 입력해주세요">
+    </div>
+    <button type="button" class="start_btn" id="start_btn">
+        <img src="images/start_deactivation.png" width="328" height="56">
+    </button>
+</section>
+
+</body>
+</html>
