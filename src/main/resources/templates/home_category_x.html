@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
+    <title>Home_category</title>
+    <style>
+        .back{
+            margin-left: 12px;
+            border: none;
+            background : none;
+            margin-right: 5px;
+        }
+        .tab{
+            margin-left: 12px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-family: Pretendard;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .korean,.Asian,.Western{
+            display: flex;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            width: 106px;
+            height: 48px;
+        }
+        .align{
+            display: flex;
+            flex-direction: row;
+            gap:8px;
+        }
+
+        .combobox {
+            display: inline-flex;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 12px 0px #0D15100F;
+            margin-top: 14px;
+            font-family: Pretendard;
+            line-height: 19.1px;
+            font-size: 15px;
+            justify-content: center;
+            border: none;
+
+        }
+        .vegan_type{
+            margin-top: 14px;
+            border-radius: 8px;
+            gap: 4px;
+            box-shadow: 0px 2px 12px 0px #0D15100F;
+            display: inline-flex;
+            background-color: #FFFFFF;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .vegan{
+            width: 8px;
+            height: 8px;
+            border-radius: 90px;
+            background-color: #326144;
+        }
+        .vegan_option{
+            width: 6px;
+            height: 6px;
+            border-radius: 90px;
+            border: 2px solid #DFEBE4;
+
+        }
+        .frame {
+            margin-top: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%; /*가운데오게 하려면...??*/
+        }
+        .emojiFrame{
+            width: 105px;
+            height: 59px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: inline-flex;
+            text-align: center;
+            color: #8B8E8C;
+            font-size: 16px;
+            font-family: Pretendard;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+
+
+    </style>
+</head>
+<body>
+<section class="home-section">
+    <div style="display: flex; align-items: center;height: 56px;margin-top: 21px">
+        <button class="back">
+            <img src="images/arrow.png" style="width: 18px ; height: 18px">
+        </button>
+        <span class="title" style="font-weight: 600; font-size: 20px; line-height: 23.87px;">카테고리</span>
+    </div>
+    <div class="tab">
+        <div class="korean">한식</div>
+        <div class="Asian">아시안</div>
+        <div class="Western">서양식</div>
+    </div>
+    <img src="images/KoreanFood.png" width="360" height="120">
+    <div class = align>
+        <form action="#">
+            <select class="combobox" name="정렬방식" id="sort" width ="76" height ="35" style="margin-left: 8px">
+                <option value="distance">거리순</option>
+                <option value="popular">인기순</option>
+            </select>
+        </form>
+        <form action="#">
+            <select class="combobox" name="지역선택" id="location" width="99px" height ="35">
+                <option value="nearBy">내 주변</option>
+                <option value="Seoul">서울</option>
+                <option value="Gyeonggi">경기</option>
+                <option value="Incheon">인천</option>
+                <option value="puAndUl">부산&울산</option>
+                <option value="daeAndSe">대전&세종</option>
+                <option value="Daegu">대구</option>
+                <option value="Gyeonggi">광주</option>
+                <option value="Jeju">제주</option>
+                <option value="Gangwon">강원</option>
+                <option value="Chungcheong">충북&충남</option>
+                <option value="Jeolla">전북&전남</option>
+                <option value="Gyeongsang">경북&경남</option>
+            </select>
+        </form>
+        <div class="vegan_type" style="width: 56px; height: 35px;">
+          <aside class="vegan"></aside><span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건</span>
+        </div>
+        <div class="vegan_type" style="width: 84px;height: 35px;">
+          <aside class="vegan_option"></aside><span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건옵션</span>
+        </div>
+
+    </div>
+        <div class = frame>
+            <div class = emojiFrame>
+            <img src="images/sentiment_dissatisfied.png" width="24" height="24">
+                <p>식당이 없습니다</p>
+            </div>
+        </div>
+
+
+    </section>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
+  <title>Home_popular</title>
+</head>
+<style>
+
+  .title{
+    letter-spacing: 0em;
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: Pretendard;
+  }
+  .top7{
+    font-family: Pretendard;
+    margin-left: 16px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+  .back{
+    margin-left: 12px;
+    border: none;
+    background : none;
+    margin-right: 5px;
+  }
+  .popular{
+    width: 200px;
+    height: 181px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: inline-flex;
+
+  }
+  .popular_img{
+    width: 200px;
+    height: 120px;
+    border-radius: 8px;
+    background-color: gainsboro;
+  }
+  .rank{
+    width: 24px;
+    height: 18px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 0px 2px 12px rgba(13, 21, 16, 0.06);
+    border-radius: 9px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    display: inline-flex;
+    margin-top: 12px;
+    margin-left: 8px;
+    font-size: 8px;
+    font-weight: 700;
+    color: #326144;
+
+  }
+  .popularInfo{
+    font-size:16px;
+    font-weight: 500;
+    width: 200px;
+    margin-top: 8px;
+    align-items: center;
+    display: inline-flex;
+  }
+  .popular_place{
+    justify-content: flex-start;
+    align-items: center;
+    display: inline-flex;
+    font-weight: 400;
+    font-size: 8px;
+    color: #535654;
+    margin-top: 4px;
+  }
+  .popular_placeIcon{
+
+    display: flex;
+    position: relative;
+  }
+
+  .popular_Score{
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    font-size: 8px;
+    font-weight: 400;
+    color: #535654;
+    margin-left: 8px;
+  }
+
+  .popular_menu{
+    margin-top: 8px;
+    color: #0D1510;
+    font-size: 8px;
+    font-weight: 400;
+    gap:2px;
+  }
+  .popular_Bookmarker{
+    float: right;
+    margin-left:96px ;
+  }
+  .VeganOption{
+
+    /* display: inline-block; !*span으로 해서 안보일때(?)*!*/
+    width: 24px;
+    height: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2px;
+    display: inline-flex;
+    margin-left: 8px;
+
+  }
+  .vegan{
+    width: 8px;
+    height: 8px;
+    background: #326144;
+    border-radius: 90px;
+  }
+  .vegan_option_font{
+    margin-left: 2px;
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 300;
+    color: #8B8E8C;
+  }
+</style>
+
+  <body>
+  <div style="display: flex; align-items: center;height: 56px;margin-top: 21px">
+    <button class="back">
+      <img src="images/arrow.png" style="width: 18px ; height: 18px">
+    </button>
+  <span class="title">이번 주 인기 맛집</span>
+</div>
+
+<section class="top7">
+  <p style="font-weight: 500">이번주 인기맛집 <b style="font-weight: 700;color: #326144">TOP 7</b></p>
+  <div class="popular">
+    <div class="popular_img"></div>
+    <div class="rank"> 1위 </div>
+    <div class="popularInfo">식당이름
+      <span class="VeganOption">
+                    <span class="vegan"></span>
+                    <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
+       </span>
+      <span class="popular_Bookmarker" >
+                    <img src="images/Bookmark.png" width="16" height="16" >
+            </span>
+    </div>
+
+    <div class="popular_place">
+      <img class="popular_placeIcon" src="images/place.png" style="position: relative" width="12" height="12">
+      <span>식당위치</span>
+      <span class="popular_Score">
+                 <img src="images/Star.png" width="12" height="12" >
+                 <span>5.0</span>
+         </span>
+    </div>
+    <div class="popular_menu">
+      <span style="font-weight: 700;">분류</span>
+      <span>·</span>
+      <span>대표메뉴1</span>
+      <span>·</span>
+      <span>대표메뉴2</span>
+    </div>
+
+  </div>
+</section>
+  <section class="popular_all">
+
+
+  </section>
+
+</body>
+</html>

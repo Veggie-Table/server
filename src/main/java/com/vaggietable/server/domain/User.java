@@ -2,10 +2,11 @@ package com.vaggietable.server.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 
 
 @Getter
+@Setter
 @NoArgsConstructor
 public class User{
     private String name;
@@ -18,7 +19,7 @@ public class User{
         this.email = email;
     }
 
-    public User update(String nickname) {
+    public User Nickname(String nickname) {
         this.nickname = nickname;
         return this;
     }

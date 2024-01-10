@@ -5,6 +5,7 @@
     <insert id="save"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `user` (`name`,`email`) VALUES(#{name}, #{email})
     </insert>
+
     <select id="findByEmail" resultType="com.vaggietable.server.domain.User">
         SELECT
             `name`,
@@ -14,9 +15,13 @@
         WHERE `email` = #{email}
     </select>
 
-    <select id="findNicknameById" parameterType="String" resultType="com.vaggietable.server.domain.User">
-        select `nickname` from `User` where `email` = #{email}
-    </select>
-
-
+    <update id="saveNickname" >
+        UPDATE `user`
+        SET nickname = #{nickname}
+        WHERE `email` = #{email}
+    </update>
+   <!-- <update id="saveNickname" parameterType="com.vaggietable.server.dto.NicknameDto" >
+        update `nickname` set nickname =#{nickname}
+                          from `User` where `email` = #{email}
+    </update>-->
 </mapper>

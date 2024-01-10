@@ -10,6 +10,11 @@
             margin-left:15px;
         }
 
+        .title{
+            font-family: Pretendard;
+            letter-spacing: 0em;
+            text-align: left;
+        }
 
         .text{
 
@@ -19,6 +24,7 @@
 
         }
         .text2{
+            list-style: inside;
             width: 226px;
             height: 28px;
             top: 176px;
@@ -29,15 +35,15 @@
             text-align: left;
             color:#535654;
             margin-bottom:150px;
+            padding-left: 5px; /*여백을 설정?? -> 0 으로 하면 리스트의 여백이 사라짐*/
         }
         input {
-            font-size: 12px;
+            font-size: 16px;
             border: none;
             font-family: Pretendard;
-            margin-bottom:200px;
         }
         input::placeholder {
-            font-size: 12px;
+            font-size: 16px;
             font-family: Pretendard;
         }
         input:focus {
@@ -48,26 +54,65 @@
         }
 
         .start_btn{
-            display: inline-block;
             padding: 0;
             border: none;
-            background: none;
+            background: #F1EFEF;
+            width:328px;
+            height:56px;
+            border-radius: 8px;
+            font-family: Pretendard;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 23.87px;
+            color: #FFFFFF;
         }
+        .back{
+            border: none;
+            background : none;
+            margin-right: 5px;
+        }
+        .guide{
 
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 14px;
+            letter-spacing: 0em;
+            text-align: left;
+            color: #8B8E8C;
+            margin-bottom:200px;
+            margin-top: 10px;
+
+        }
 
     </style>
 </head>
 <body>
 <section class="nick-section">
-    <h1 class="title">회원 가입</h1>
-    <div class="text">Veggie Table 이용을 위해<br><b>닉네임</b>을 입력해주세요.</div>
-    <div class ="text2">닉네임은 맛집 리뷰 작성시 노출될 수 있어요.<br>닉네임은 언제든지 변경할 수 있어요.</div>
-    <div class="nick">
-        <input type="text" name="Nickname" placeholder="닉네임을 입력해주세요">
+
+    <div style="display: flex; align-items: center;margin-top: 45px">
+        <button class="back">
+            <img src="images/arrow.png" style="width: 18px ; height: 18px">
+        </button>
+        <span class="title" style="font-weight: 500; font-size: 20px; line-height: 23.87px">회원 가입</span>
     </div>
-    <button type="button" class="start_btn" id="start_btn">
-        <img src="images/start_deactivation.png" width="328" height="56">
-    </button>
+    <div class="text">Veggie Table 이용을 위해<br><b>닉네임</b>을 입력해주세요.</div>
+    <ul class ="text2">
+        <li>닉네임은 맛집 리뷰 작성시 노출될 수 있어요.</li>
+        <li>닉네임은 언제든지 변경할 수 있어요.</li> <!--리스트!-->
+    </ul>
+<form action="/saveNickname" name = "saveNickname" method="POST">
+    <div class="nick">
+        <input type="text" name="nickname" placeholder="닉네임을 입력해주세요">
+    </div>
+    <div>
+        <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #0D1510" > <!--수평선 그리기-->
+    </div >
+    <div class="guide">
+        2자 ~ 6자 사이로 입력해주세요.
+        <span style="font-size: 8px; float: right; margin-right: 10px ">0/6</span> <!--float: right 오른쪽정렬??-->
+    </div>
+    <input type="submit" value="시작하기" class="start_btn" id="start_btn">
+</form>
 </section>
 
 </body>
