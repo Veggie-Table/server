@@ -1,5 +1,6 @@
 package com.vaggietable.server.service;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vaggietable.server.domain.User;
 import com.vaggietable.server.dto.NicknameDto;
 import com.vaggietable.server.mapper.UserMapper;
@@ -21,7 +22,6 @@ public class UserService {
         userMapper.saveNickname(dto);
     }
 
-
       public String getCurrentUserEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof OAuth2User) {
@@ -29,6 +29,11 @@ public class UserService {
             return oauth2User.getAttribute("email");
         }
         return null;
+    }
+
+    public String checkNickname(String nickname){
+        userMapper.checkNickname(nickname);
+        return nickname;
     }
 
 }

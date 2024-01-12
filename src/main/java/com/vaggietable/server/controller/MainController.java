@@ -1,18 +1,12 @@
 package com.vaggietable.server.controller;
 
-import com.vaggietable.server.config.auth.OAuthAttributes;
 import com.vaggietable.server.domain.User;
 import com.vaggietable.server.dto.NicknameDto;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class MainController {
@@ -50,9 +44,15 @@ public class MainController {
         return "home_gps_o";
     }
 
-
-
-
-
-
+    @GetMapping("/nickname")
+    public Boolean checkNickname(@RequestParam String nickname){
+       Boolean isExist;
+       String userNickname = userService.checkNickname(nickname);
+       if(userNickname!=null){
+           isExist = true;
+       }else {
+           isExist = false;
+       }
+        return isExist;
+    }
 }

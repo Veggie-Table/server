@@ -8,10 +8,10 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     //로그인 & 회원가입
     User findByEmail(String email);
-    User findNicknameById(String email);
+    String checkNickname(String nickname);
     void save(User user);
-
     void saveNickname(NicknameDto dto);
 
+    String findNickname(NicknameDto dto);
 
 }

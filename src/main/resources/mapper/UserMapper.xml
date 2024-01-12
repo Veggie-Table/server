@@ -20,8 +20,15 @@
         SET nickname = #{nickname}
         WHERE `email` = #{email}
     </update>
-   <!-- <update id="saveNickname" parameterType="com.vaggietable.server.dto.NicknameDto" >
-        update `nickname` set nickname =#{nickname}
-                          from `User` where `email` = #{email}
-    </update>-->
+
+    <select id="checkNickname" parameterType="map" resultType="string">
+        SELECT `nickname` FROM `user`
+        WHERE `nickname` = #{nickname}
+    </select>
+
+    <select id="findNickname" resultType="String">
+        SELECT `nickname` FROM `user`
+        WHERE `email` = #{email}
+    </select>
+
 </mapper>

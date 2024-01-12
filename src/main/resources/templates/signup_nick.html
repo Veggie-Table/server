@@ -53,6 +53,13 @@
             opacity: 0;
         }
 
+
+        start_btn.disabled{
+            background: #F1EFEF;
+        }
+        .start_btn.active {
+            background: #326144;
+        }
         .start_btn{
             padding: 0;
             border: none;
@@ -66,6 +73,8 @@
             line-height: 23.87px;
             color: #FFFFFF;
         }
+
+
         .back{
             border: none;
             background : none;
@@ -100,19 +109,63 @@
         <li>닉네임은 맛집 리뷰 작성시 노출될 수 있어요.</li>
         <li>닉네임은 언제든지 변경할 수 있어요.</li> <!--리스트!-->
     </ul>
-<form action="/saveNickname" name = "saveNickname" method="POST">
-    <div class="nick">
-        <input type="text" name="nickname" placeholder="닉네임을 입력해주세요">
-    </div>
-    <div>
-        <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #0D1510" > <!--수평선 그리기-->
-    </div >
-    <div class="guide">
-        2자 ~ 6자 사이로 입력해주세요.
-        <span style="font-size: 8px; float: right; margin-right: 10px ">0/6</span> <!--float: right 오른쪽정렬??-->
-    </div>
-    <input type="submit" value="시작하기" class="start_btn" id="start_btn">
-</form>
+    <form action="/saveNickname" name = "saveNickname" method="POST">
+        <div class="nick">
+            <input type="text" id="nickname" name="nickname" maxlength="5" placeholder="닉네임을 입력해주세요" oninput="countChar(this)">
+        </div>
+        <div>
+            <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #0D1510" > <!--수평선 그리기-->
+        </div >
+        <div class="guide">
+            <span id="checkNickname">2자 ~ 6자 사이로 입력해주세요.</span>
+            <span id="countChar"style="font-size: 8px; float: right; margin-right: 10px ">0/6</span> <!--float: right 오른쪽정렬??-->
+        </div>
+        <input type="submit" value="시작하기" class="start_btn" id="start_btn">
+    </form>
+    <script>
+        function countChar(input) {
+            var max = 6;
+            var current = input.value.length;
+            var checkNickname = document.getElementById("checkNickname");
+
+            document.getElementById("countChar").textContent = current + "/" + max;
+            // 글자수 카운트
+
+            var startBtn = document.getElementById("start_btn");
+            if (current >= 2 && current <= max) {
+                existNickname(input.value);
+            } else {
+                checkNickname.textContent = "두 글자 이상 입력해주세요";
+                checkNickname.style.color = "#326144";
+                startBtn.classList.remove("active");
+                startBtn.setAttribute("disabled", "disabled");
+            }
+        }
+
+        function existNickname(nickname) {
+
+            let startBtn = document.getElementById("start_btn");
+
+            $.get('/nickname')
+                .data(nickname)
+                .done(function(response){
+
+                    let isExist = JSON.parse(response);
+
+                    if (!isExist) {
+                        startBtn.classList.add("active");
+                        startBtn.removeAttribute("disabled");
+                    } else {
+                        startBtn.classList.remove("active");
+                        startBtn.setAttribute("disabled", "disabled");
+                    }
+                })
+                .fail(function(response){
+                    alert("Error");
+                });
+        }
+
+    </script>
 </section>
 
 </body>
