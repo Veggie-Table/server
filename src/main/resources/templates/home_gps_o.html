@@ -309,6 +309,21 @@
         .swiper-wrapper {
             display: flex;
         }
+        .categoryImg{
+            display: flex;
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background-size: 100px;
+            margin-right: 8px;
+            flex-direction: column;
+        }
+        .categoryFont{
+            font-family: Pretendard;
+            color: #FFFFFF;
+            margin-left: 8px;
+        }
+
 
     </style>
 </head>
@@ -316,14 +331,14 @@
 <section class="home-section">
 
     <div class ="logo_tab">
-        <img src="images/logo_green_tabbar.png" width="173.33" height="23" >
+        <img src="../static/images/logo_green_tabbar.png" width="173.33" height="23" >
     </div>
     <div class="placeIcon">
-        <img src="images/palce_icon.png" width="9.3" height="13" style="margin-right: 2.5px;float: left";>
+        <img src="../static/images/palce_icon.png" width="9.3" height="13" style="margin-right: 2.5px;float: left";>
         <span style="margin-left: 5px; display: block;">위치정보</span>
     </div>
     <div class="text1">
-        <b style="font-weight: 700">닉네임</b>님과 가장 가까운 채식 맛집은<br> <b class="underline" >식당이름</b>입니다!
+        <b th:text="${session.user.getNickname()}" style="font-weight: 700"></b>님과 가장 가까운 채식 맛집은<br> <b class="underline">식당이름</b>입니다!
     </div>
     <div class="rest"> <!--홈 화면 상단 식당정보-->
         <div class="Frame">
@@ -337,10 +352,10 @@
                     <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
                 </span>
 
-                 <div class="rest_place"><img src="images/place.png" style="width: 12px; height: 12px;margin-top: 3px;">
+                 <div class="rest_place"><img src="../static/images/place.png" style="width: 12px; height: 12px;margin-top: 3px;">
                 <span style="color: #535654; font-size: 8px; font-weight: 400;">식당위치</span>
             </div>
-                <img class="star" src="images/Star.png">
+                <img class="star" src="../static/images/Star.png">
                 <aside class="menu">
                     <b style="font-weight: 700;">한식</b>
                     <div>·</div>
@@ -351,21 +366,36 @@
 
             </span>
             </div><!--restInfo-->
-            <span><img src="images/Bookmark.png" width="12" height="12"></span>
+           <!-- 북마크 여기있음-->
+            <span><input id="scrap1" type="image" src="../static/images/Bookmark.png" width ="16" height="16" border="0" onclick="saveScrap1()"></span>
             <div class = "distanceInfo">
                 현재위치에서 <b style="font-weight: 700; color: #326144">거리</b>
-                <button class="distanceInfo_btn" onclick="location.href='VeggieMap.html'"> <!--버튼에 링크걸기-->
-                    <img src="images/turn_slight_right.png" width="12" height="12" style="margin-right: 3px">
+                <button class="distanceInfo_btn" onclick="location.href='VeggieMap.html'"> <!--버튼 누르면 이동-->
+                    <img src="../static/images/turn_slight_right.png" width="12" height="12" style="margin-right: 3px">
                     <span>가는 길 확인하기</span></button>
             </div>
         </div>
+        <script>
+            var cnt = 1;
 
+            function saveScrap1() {
+                var scrap = document.getElementById("scrap1");
+
+                if (cnt % 2 == 1) {
+                    scrap.src = "../static/images/bookmark_filled.png";
+                } else {
+                    scrap.src = "../static/images/Bookmark.png";
+                }
+
+                cnt++;
+            }
+        </script>
     </div>
 
 
     </div>
     <div style="float: right">
-        <button class="search">다른 맛집 더 보기</button>
+        <button class="search" onclick="location.href='VeggieMap.html'">다른 맛집 더 보기</button>
     </div>
     <div class="text2">종류별로 메뉴를 탐색해 보세요.</div>
     <div class="swiper">
@@ -373,29 +403,52 @@
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-                <img src="images/Property%201=korean.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/hansik.png')">
+                    <div class="categoryFont" style="margin-top: 16px">한식</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">든든하고 익숙한 <br>한국의 요리</div>
+                </div>
+                <!-- css에서는 "" html에서는 ''-->
             </div>
             <div class="swiper-slide">
-                <img src="images/Property%201=asian.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/asian.png')">
+                    <div class="categoryFont" style="margin-top: 16px">아시안</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">한식 외<br>다양한 아시아의 음식들</div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="images/Property%201=western.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/yangsik.png')">
+                    <div class="categoryFont" style="margin-top: 16px">서양식</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">
+                        동양의 음식을 제외한<br>서구권의 맛
+                    </div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="images/Property%201=simple.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/gandan.png')">
+                    <div class="categoryFont" style="margin-top: 16px">간단식 <br>& 혼밥</div>
+                    <div class="categoryFont" style="margin-top: 10px;font-weight: 300;font-size: 8px">샐러드, 샌드위치 등<br>부담 없이 즐길 수 있는</div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="images/Property%201=buffet.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/buffet.png')">
+                    <div class="categoryFont" style="margin-top: 16px">뷔페</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">다양한 요리를<br>맛볼 수 있는</div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="images/Property%201=cafe.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/cafe.png')">
+                    <div class="categoryFont" style="margin-top: 16px">카페<br>& 베이커리</div>
+                    <div class="categoryFont" style="margin-top: 10px;font-weight: 300;font-size: 8px">커피 한 잔과<br>디저트의 여유</div>
+                </div>
             </div>
             <div class="swiper-slide">
-                <img src="images/Property%201=bar.png" width="100" height="100"style="margin-right: 8px">
+                <div class="categoryImg" style="background-image: url('../static/images/sull.png')">
+                    <div class="categoryFont" style="margin-top: 16px">주점</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">알코올과 안주가 필요한<br>성인을 위해</div>
+                </div>
             </div>
         </div>
     </div>
-
 
     <script>
         const swiper = new Swiper('.swiper', {
@@ -409,9 +462,12 @@
 
         });
     </script>
+
     <div class="text2">이번 주 맛집을 소개합니다.
         <span>
-        <img src="images/arrow_forward_ios.png" width="16" height="16" style="float: right; margin-right: 20px; padding-top: 2px">
+            <a href="home_popular.html">
+                <img src="../static/images/arrow_forward_ios.png" width="16" height="16" style="float: right; margin-right: 20px; padding-top: 2px">
+            </a>
     </span>
     </div>
     <div class="popular">
@@ -422,16 +478,32 @@
                     <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
                     <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
             </span>
+            <!--북마크 여기있음-->
             <span class="popular_Bookmarker" >
-                    <img src="images/Bookmark.png" width="16" height="16" >
+               <input id="scrap_id" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap()">
             </span>
         </div>
 
+        <script>
+            var cnt = 1;
+
+            function saveScrap() {
+                var scrap = document.getElementById("scrap_id");
+
+                if (cnt % 2 == 1) {
+                    scrap.src = "../static/images/bookmark_filled.png";
+                } else {
+                    scrap.src = "../static/images/Bookmark.png";
+                }
+
+                cnt++;
+            }
+        </script>
         <div class="popular_place">
-            <img class="popular_placeIcon" src="images/place.png" style="position: relative" width="12" height="12">
+            <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
             <span>식당위치</span>
             <span class="popular_Score">
-                 <img src="images/Star.png" width="12" height="12" >
+                 <img src="../static/images/Star.png" width="12" height="12" >
                  <span>5.0</span>
          </span>
         </div>
@@ -445,26 +517,25 @@
 
     </div><!--popular-->
 
-
 </section>
 <section class="navi_bar">
     <a class="navi_HomeSegment">
         <div class="IconContainer"></div>
-        <img src="images/homeIcon.png" width="24" height="24">
+        <img src="../static/images/homeIcon.png" width="24" height="24">
         <div class="StateLayer">
             <div class="LabelText" >Home</div>
         </div>
     </a>
     <a class="navi_MapSegment">
         <div class="IconContainer"></div>
-        <img src="images/place.png" width="24" height="24">
+        <img src="../static/images/place.png" width="24" height="24">
         <div class="StateLayer">
             <div class="LabelText" >Veggie Map</div>
         </div>
     </a>
     <a class="navi_Mypage">
         <div class="IconContainer"></div>
-        <img src="images/person.png" width="24" height="24">
+        <img src="../static/images/person.png" width="24" height="24">
         <div class="StateLayer">
             <div class="LabelText" >MyPage</div>
         </div>

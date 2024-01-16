@@ -19,8 +19,8 @@ public class ModelController {
     @GetMapping("/home_gps_o")
     public String home_gps_o (Model model){
         User user = userMapper.findByEmail(userService.getCurrentUserEmail());
-        String userNickname = user.getNickname();
-        model.addAttribute("nickname", userNickname);
+        String nickname = user.getNickname();
+        model.addAttribute("nickname", nickname);
         return "home_gps_o";
     }
 
