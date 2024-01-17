@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
+  <link rel="stylesheet" href="./review_writing.css">
+  <title>Title</title>
+
+</head>
+<body>
+<div class="title_frame">
+  <div>
+    <button class="back" onclick="history.back()">
+      <img src="../static/images/arrow.png" style="width: 18px ; height: 18px">
+    </button>
+    <span class="title" style="font-weight: 500; font-size: 20px; line-height: 23.87px">리뷰 작성</span>
+  </div>
+  <div>
+  <button id = postBtn class="postBtn">게시</button>
+  </div>
+</div>
+<div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+  <div class="rest_Img">img</div>
+  <div class="rest_frame">
+    <div class="frame">
+      <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+      <span class="vegan"></span>
+      <span class="vegan_option_font">비건</span>
+    </div>
+    <div class="frame" style="margin-top: 12px">
+      <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+    </div>
+  </div>
+</div>
+<hr class="hr">
+<div class="score">
+ <img src="../static/images/star_border.png" class="stars">
+  <img src="../static/images/star_border.png" class="stars">
+  <img src="../static/images/star_border.png" class="stars">
+  <img src="../static/images/star_border.png" class="stars">
+  <img src="../static/images/star_border.png" class="stars">
+</div>
+<form name = "saveReview" method="POST">
+<div class="review">
+  <textarea id="review" class="review_text" cols="45" rows="16" name="review" maxlength="255" placeholder="리뷰를 작성해 주세요." oninput=countChar(this)></textarea>
+  <div>
+    <p id = count style="font-size: 8px; text-align: right;margin-bottom: 16px;margin-right: 16px">0/255</p>
+  </div>
+</div>
+
+</form>
+<script>
+  function countChar(input){
+    var max = 255;
+    var current = input.value.length;
+    var count = document.getElementById("count");
+
+    document.getElementById("count").textContent = current + "/" + max;
+
+    var postBtn = document.getElementById("postBtn");
+    if (current>= 3 && current<= max) {
+      postBtn.classList.add("active");
+      postBtn.removeAttribute("disabled");
+    } else {
+      postBtn.classList.remove("active");
+      postBtn.setAttribute("disabled", "disabled");
+    }
+
+  }
+
+</script>
+</body>
+</html>
