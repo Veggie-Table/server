@@ -31,4 +31,8 @@
         WHERE `email` = #{email}
     </select>
 
+    <select id="findScrapIdByEmail" parameterType="map" resultType="string">
+        SELECT ''
+    </select>
+
 </mapper>
