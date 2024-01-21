@@ -40,9 +40,9 @@
   <img src="../static/images/star_border.png" class="stars">
   <img src="../static/images/star_border.png" class="stars">
 </div>
-<form name = "saveReview" method="POST">
+<form action="/" name = "saveReview" method="POST">
 <div class="review">
-  <textarea id="review" class="review_text" cols="45" rows="16" name="review" maxlength="255" placeholder="리뷰를 작성해 주세요." oninput=countChar(this)></textarea>
+  <textarea id="review" class="review_text" cols="45" rows="16" name="review" maxlength="254" placeholder="리뷰를 작성해 주세요." oninput=countChar(this)></textarea>
   <div>
     <p id = count style="font-size: 8px; text-align: right;margin-bottom: 16px;margin-right: 16px">0/255</p>
   </div>
@@ -51,7 +51,7 @@
 </form>
 <script>
   function countChar(input){
-    var max = 255;
+    var max = 254;
     var current = input.value.length;
     var count = document.getElementById("count");
 

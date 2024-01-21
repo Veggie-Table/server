@@ -16,7 +16,7 @@
     }
 
 
-    button.kakaobtn{
+    .kakaobtn{
       margin-bottom: 8px;
       margin-top: 100px;
       width: 328px;
@@ -29,7 +29,7 @@
 
 
     }
-    button.Naverbtn{
+    .Naverbtn{
       margin-bottom: 8px;
       width: 328px;
       height: 56px;
@@ -39,15 +39,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
+      color: #FFFFFF;
+      text-decoration: none;
     }
-    button.Googlebtn {
+    .Googlebtn {
       margin-bottom: 8px;
       width: 328px;
       height: 56px;
       border-radius: 8px;
       border: 1px solid #999;
       background-color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #0D1510;
+
     }
     .naverIcon{
       width: 44px;
@@ -68,7 +75,7 @@
 <body>
 <section class="main-section">
   <div>
-    <img class="logoImg" src="images/logo_green.png" ;>
+    <img class="logoImg" src="../static/images/logo_green.png" ;>
   </div>
 
   <div class="text"> <p style="line-height: 0px; font-size: 24px;font-family: Montserrat"><b style="font-weight: 600">Veggie</b>Table,</p> <!--p행간 줄이기-->
@@ -77,20 +84,20 @@
 
 
   <button type="button" class="kakaobtn" id="kakaoLogin">
-   <img src="images/kakao_icon.png" style="margin-right: 5px;" width="17.42"; height="16";>
+   <img src="../static/images/kakao_icon.png" style="margin-right: 8px;" width="17.42" height="16";>
     <span style= "font-family: Pretendard ; font-weight: 500; font-size: 20px; line-height:23.87px;"> 카카오로 시작하기 </span>
   </button>
 
-  <button type="button" class="Naverbtn" id="naverLogin" >
-    <img  class="naverIcon" src="images/naver_Icon.png">
-    <span style= "font-family: Pretendard ; color: #FFFFFF; font-weight: 500;font-size: 20px; line-height:23.87px;"> 네이버로 시작하기
+  <a class="Naverbtn" id="naverLogin" href="/oauth2/authorization/naver">
+    <img  class="naverIcon" src="../static/images/naver_Icon.png">
+    <span style= "font-family: Pretendard ; font-weight: 500;font-size: 20px; line-height:23.87px;"> 네이버로 시작하기
     </span>
+  </a>
 
-  </button>
-  <button type="button" class="Googlebtn" id="googleLogin">
-    <img src="images/google_icon.png" style="margin-right: 5px;" width="16"; height="16";>
+  <a  class="Googlebtn" id="googleLogin" href="/oauth2/authorization/google">
+    <img src="../static/images/google_icon.png" style="margin-right: 8px;" width="16" height="16";>
     <span style= "font-family: Pretendard ; font-weight: 500; font-size: 20px; line-height:23.87px;" > 구글로 시작하기 </span>
-  </button>
+  </a>
 </section>
 
 </body>

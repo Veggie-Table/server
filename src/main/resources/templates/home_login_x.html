@@ -3,306 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
+    <link rel="stylesheet" href="./home_gps_o.css">
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <title>Title</title>
-    <style>
-        section.home-section{
-            font-family: Pretendard;
-            margin-left: 8px;
- 
-        }
-        div image:not(.navi_bar) {
-            margin-left: 40px;
-        }
-        .logo_tab{
-            width: 173px;
-            height: 24px;
-            margin-top: 40px;
 
-        }
-        .search{
-            width: 100px;
-            height: 14px;
-            border: none;
-            font-family: pretendard;
-            font-size: 12px;
-            background: none;
-            color:#326144;
-            font-weight:400;
-            text-decoration: underline;
-        }
-        .placeIcon{
-            margin-top: 40px;
-            margin-left: 3px;
-            margin-bottom: 2px;
-            color: #535654;
-            font-size: 12px;
-
-        }
-        .text1{
-            font-size: 20px;
-            margin-bottom:10px;
-            font-weight:500;
-        }
-
-        .text2{
-
-            font-size: 16px;
-            margin-bottom:10px;
-            margin-top: 40px;
-            font-weight: 500;
-
-        }
-        .rest{
-            width: 328px;
-            height: 188px;
-            background: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0px 2px 12px 0px #0D15100F;
-            display: flex;
-            /*Flexbox 요소들을 유연하게 배치하기 위한 레이아웃 시스템*/
-
-        }
-        .category{
-            display: flex;
-        }
-        .popular{
-           width: 200px;
-            height: 181px;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            display: inline-flex;
-            margin-bottom: 26px;
-        }
-
-
-        .navi_bar{
-            padding-left: 8px;
-            padding-right: 8px;
-            background: white;
-            border-top: 2px #FAFAFA solid;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 8px;
-            display: inline-flex;
-        }
-        .Frame{
-            align-items: center;
-            justify-content: center;
-            display: inline-flex;
-            width: 156px;
-            height: 156px;
-            border-radius: 8px;
-            align-items: center;
-            flex-shrink: 0;
-            background-color: gainsboro;
-            margin-top: 16px;
-            margin-left: 7px;
-            margin-right: 7px;
-        }
-        .rest_name{
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 19px;
-            text-align: left;
-
-
-        }
-        .Frame2{
-
-            flex-direction: column;
-            width: 148px;
-            height: 156px;
-            border-radius: 8px;
-            background-color: gainsboro;
-            margin-top: 16px;
-            margin-right: 7px;
-
-        }
-        .rest_Info{
-            width: 124px;
-            height: 69px;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 4px;
-            display: inline-flex
-        }
-        .VeganOption{
-
-           /* display: inline-block; !*span으로 해서 안보일때(?)*!*/
-            width: 24px;
-            height: 10px;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 2px;
-            display: inline-flex;
-            margin-left: 8px;
-
-
-        }
-        .rest_place{
-            display: flex;
-        }
-        .star{
-            width: 16px;
-            height: 16px;
-            position: relative;
-            flex-direction: column;   /*세로로 정렬하려면 이렇게..*/
-            justify-content: flex-start;
-            align-items: flex-start;
-            display: inline-flex;
-        }
-        .menu{
-            display: flex;
-            height: 0.625rem;
-            align-items: center;
-            gap: 0.125rem;
-            font-size: 8px;
-            font-weight: 400;
-        }
-        .distanceInfo{
-            margin-top: 37px;
-            margin-left: 1px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        .distanceInfo_btn{
-            width: 148px;
-            height: 28px;
-            background: #326144;
-            border-radius: 4px;
-            margin-top: 7px;
-            font-size: 12px;
-            color: #FFFFFF;
-            border: none;
-        }
-        .underline{
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset:-0.3rem;
-            text-decoration-color: #DFEBE4;
-            text-decoration-thickness: 6px;
-
-        }
-        .popular_img{
-            width: 200px;
-            height: 120px;
-            border-radius: 8px;
-            background-color: gainsboro;
-        }
-        .rank{
-            width: 24px;
-            height: 18px;
-            position: absolute;
-            background: rgba(255, 255, 255, 0.80);
-            box-shadow: 0px 2px 12px rgba(13, 21, 16, 0.06);
-            border-radius: 9px;
-            overflow: hidden;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            display: inline-flex;
-            margin-top: 12px;
-            margin-left: 8px;
-            font-size: 8px;
-            font-weight: 700;
-            color: #326144;
-
-        }
-        .popularInfo{
-            font-size:16px;
-            font-weight: 500;
-            width: 200px;
-            margin-top: 8px;
-            align-items: center;
-            display: inline-flex;
-        }
-        .popular_place{
-            justify-content: flex-start;
-            align-items: center;
-            display: inline-flex;
-            font-weight: 400;
-            font-size: 8px;
-            color: #535654;
-            margin-top: 4px;
-        }
-        .popular_placeIcon{
-
-            display: flex;
-        }
-
-        .popular_Score{
-            justify-content: flex-start;
-            align-items: center;
-            display: flex;
-            font-size: 8px;
-            font-weight: 400;
-            color: #535654;
-            margin-left: 8px;
-        }
-
-        .popular_menu{
-            margin-top: 8px;
-            color: #0D1510;
-            font-size: 8px;
-            font-weight: 400;
-            gap:2px;
-        }
-        .popular_Bookmarker{
-            float: right;
-            margin-left:96px ;
-        }
-        .navi_HomeSegment,.navi_MapSegment,.navi_Mypage{
-            flex: 1 1 0;
-            padding-top: 12px; 
-            padding-bottom: 16px;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            gap: 4px; 
-            display: inline-flex;
-        }
-        .IconContainer{
-            overflow: hidden;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-        }
-        .StateLayer{
-            width: 64px;
-            height: 32px;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            justify-content: center;
-            align-items: center;
-            display: inline-flex;
-        }
-        .LabelText{
-            width: 100%;
-            text-align: center;
-            color: #535654;
-            font-size: 12px;
-            font-weight: 500;
-            line-height: 16px;
-            letter-spacing: 0.5px;
-            word-wrap: break-word;
-            font-family: Pretendard;
-        }
-
-    </style>
 </head>
 <body>
 <section class="home-section">
 
     <div class ="logo_tab">
-        <img src="images/logo_green_tabbar.png" width="173.33" height="23" >
+        <img src="../static/images/logo_green_tabbar.png" width="173.33" height="23" >
     </div>
     <div class="placeIcon">
-        <img src="images/palce_icon.png" width="9.3" height="13" style="margin-right: 2.5px;float: left";>
+        <img src="../static/images/palce_icon.png" width="9.3" height="13" style="margin-right: 2.5px;float: left";>
         <span style="margin-left: 5px; display: block;">위치 정보 없음</span>
     </div>
     <div class="text1">
@@ -320,10 +39,10 @@
                     <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
                 </span>
 
-                 <div class="rest_place"><img src="images/place.png" style="width: 12px; height: 12px;margin-top: 3px;">
+                 <div class="rest_place"><img src="../static/images/place.png" style="width: 12px; height: 12px;margin-top: 3px;">
                 <span style="color: #535654; font-size: 8px; font-weight: 400;">식당위치</span>
             </div>
-                <img class="star" src="images/Star.png">
+                <img class="star" src="../static/images/Star.png">
                 <aside class="menu">
                     <b style="font-weight: 700;">한식</b>
                     <div>·</div>
@@ -334,11 +53,11 @@
 
             </span>
             </div><!--restInfo-->
-            <span><img src="images/Bookmark.png" width="12" height="12"></span>
+            <span><img src="../static/images/Bookmark.png" width="12" height="12"></span>
             <div class = "distanceInfo">
                 현재위치에서 <b style="font-weight: 700; color: #326144">거리</b>
                 <button class="distanceInfo_btn">
-                    <img src="images/turn_slight_right.png" width="12" height="12" style="margin-right: 3px">
+                    <img src="../static/images/turn_slight_right.png" width="12" height="12" style="margin-right: 3px">
                     <span>가는 길 확인하기</span></button>
             </div>
         </div>
@@ -350,68 +69,225 @@
     <div style="float: right;margin-right: 16px">
         <a class="search">회원 가입 / 로그인 하기</a>
     </div>
-    <div class="text2">종류별로 메뉴를 탐색해 보세요.</div>
-    <div class="category">
-        <img src="images/Property%201=korean.png" width="100" height=100" style= "margin-right: 8px" ;>
-        <img src="images/Property%201=asian.png"width="100" height=100" style= "margin-right: 8px">
-        <img src="images/Property%201=western.png"width="100" height=100" style= "margin-right: 8px">
+
+    <div class="text2">카테고리별로 메뉴를 탐색해 보세요.</div>
+    <div class="swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/hansik.png')">
+                    <div class="categoryFont" style="margin-top: 16px">한식</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">든든하고 익숙한 <br>한국의 요리</div>
+                </div>
+                <!-- css에서는 "" html에서는 ''-->
+            </div>
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/asian.png')">
+                    <div class="categoryFont" style="margin-top: 16px">아시안</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">한식 외<br>다양한 아시아의 음식들</div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/yangsik.png')">
+                    <div class="categoryFont" style="margin-top: 16px">서양식</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">
+                        동양의 음식을 제외한<br>서구권의 맛
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/gandan.png')">
+                    <div class="categoryFont" style="margin-top: 16px">간단식 <br>& 혼밥</div>
+                    <div class="categoryFont" style="margin-top: 10px;font-weight: 300;font-size: 8px">샐러드, 샌드위치 등<br>부담 없이 즐길 수 있는</div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/buffet.png')">
+                    <div class="categoryFont" style="margin-top: 16px">뷔페</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">다양한 요리를<br>맛볼 수 있는</div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/cafe.png')">
+                    <div class="categoryFont" style="margin-top: 16px">카페<br>& 베이커리</div>
+                    <div class="categoryFont" style="margin-top: 10px;font-weight: 300;font-size: 8px">커피 한 잔과<br>디저트의 여유</div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="categoryImg" style="background-image: url('../static/images/sull.png')">
+                    <div class="categoryFont" style="margin-top: 16px">주점</div>
+                    <div class="categoryFont" style="margin-top: 29px;font-weight: 300;font-size: 8px">알코올과 안주가 필요한<br>성인을 위해</div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            direction: 'horizontal',
+            slidesPerView : 3.15,
+            loop: false,
+            pagination: {
+                el: '.swiper-pagination'
+            }
+
+        });
+    </script>
+
     <div class="text2">이번 주 맛집을 소개합니다.
-    <span>
-        <img src="images/arrow_forward_ios.png" width="16" height="16" style="float: right; margin-right: 20px; padding-top: 2px">
+        <span>
+            <a href="home_popular.html">
+                <img src="../static/images/arrow_forward_ios.png" width="16" height="16" style="float: right; margin-right: 20px; padding-top: 2px">
+            </a>
     </span>
     </div>
-    <div class="popular">
-        <div class="popular_img"></div>
-        <div class="rank"> 1위 </div>
-        <div class="popularInfo">식당이름
-            <span class="VeganOption">
+    <div class="swiper2">
+        <div class="swiper-wrapper">
+            <!-- 슬라이드 1 -->
+            <div class="swiper-slide">
+                <div class="popular">
+                    <div class="popular_img"></div>
+                    <div class="rank"> 1위 </div>
+                    <div class="popularInfo">식당이름
+                        <span class="VeganOption">
                     <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
                     <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
             </span>
-            <span class="popular_Bookmarker" >
-                    <img src="images/Bookmark.png" width="16" height="16" >
-            </span>
-        </div>
 
-        <div class="popular_place">
-            <img class="popular_placeIcon" src="images/place.png" style="position: relative" width="12" height="12">
-            <span>식당위치</span>
-             <span class="popular_Score">
-                 <img src="images/Star.png" width="12" height="12" >
+                        <span class="popular_Bookmarker" >
+               <input id="scrap_id1" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap(1)">
+            </span>
+                    </div>
+                    <div class="popular_place">
+                        <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
+                        <span>식당위치</span>
+                        <span class="popular_Score">
+                 <img src="../static/images/Star.png" width="12" height="12" >
                  <span>5.0</span>
          </span>
-        </div>
-        <div class="popular_menu">
-            <span style="font-weight: 700;">분류</span>
-            <span>·</span>
-            <span>대표메뉴1</span>
-            <span>·</span>
-            <span>대표메뉴2</span>
-        </div>
+                    </div>
+                    <div class="popular_menu">
+                        <span style="font-weight: 700;">분류</span>
+                        <span>·</span>
+                        <span>대표메뉴1</span>
+                        <span>·</span>
+                        <span>대표메뉴2</span>
+                    </div>
 
-    </div><!--popular-->
+                </div>
+            </div>
+            <!-- 슬라이드 2 -->
+            <div class="swiper-slide">
+                <div class="popular">
+                    <div class="popular_img"></div>
+                    <div class="rank"> 2위 </div>
+                    <div class="popularInfo">식당이름
+                        <span class="VeganOption">
+                    <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
+                    <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
+            </span>
+                        <span class="popular_Bookmarker" >
+               <input id="scrap_id2" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap(2)">
+            </span>
+                    </div>
 
+                    <div class="popular_place">
+                        <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
+                        <span>식당위치</span>
+                        <span class="popular_Score">
+                 <img src="../static/images/Star.png" width="12" height="12" >
+                 <span>5.0</span>
+         </span>
+                    </div>
+                    <div class="popular_menu">
+                        <span style="font-weight: 700;">분류</span>
+                        <span>·</span>
+                        <span>대표메뉴1</span>
+                        <span>·</span>
+                        <span>대표메뉴2</span>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 슬라이드 3 -->
+            <div class="swiper-slide">
+                <div class="popular">
+                    <div class="popular_img"></div>
+                    <div class="rank"> 3위 </div>
+                    <div class="popularInfo">식당이름
+                        <span class="VeganOption">
+                    <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
+                    <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
+            </span>
+                        <span class="popular_Bookmarker" >
+               <input id="scrap_id3" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap(3)">
+            </span>
+                    </div>
+
+                    <div class="popular_place">
+                        <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
+                        <span>식당위치</span>
+                        <span class="popular_Score">
+                 <img src="../static/images/Star.png" width="12" height="12" >
+                 <span>5.0</span>
+         </span>
+                    </div>
+                    <div class="popular_menu">
+                        <span style="font-weight: 700;">분류</span>
+                        <span>·</span>
+                        <span>대표메뉴1</span>
+                        <span>·</span>
+                        <span>대표메뉴2</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var cnt = 1;
+        function saveScrap(index) {
+            var scrap = document.getElementById("scrap_id" + index);
+            if (cnt % 2 == 1) {
+                scrap.src = "../static/images/bookmark_filled.png";
+            } else {
+                scrap.src = "../static/images/Bookmark.png";
+            }
+            cnt++;
+        }
+    </script>
+    <script>
+        const swiper2 = new Swiper('.swiper2', {
+            direction: 'horizontal',
+            slidesPerView : 1.61,
+            loop: false,
+            pagination: {
+                el: '.swiper-pagination'
+            }
+
+        });
+    </script>
+    <!--popular-->
 
 </section>
 <section class="navi_bar">
     <a class="navi_HomeSegment">
         <div class="IconContainer"></div>
-        <img src="images/homeIcon.png" width="24" height="24">
+        <img src="../static/images/homeIcon.png" width="24" height="24">
         <div class="StateLayer">
             <div class="LabelText" >Home</div>
         </div>
     </a>
     <a class="navi_MapSegment">
         <div class="IconContainer"></div>
-        <img src="images/place.png" width="24" height="24">
+        <img src="../static/images/place.png" width="24" height="24">
         <div class="StateLayer">
             <div class="LabelText" >Veggie Map</div>
         </div>
     </a>
     <a class="navi_Mypage">
         <div class="IconContainer"></div>
-        <img src="images/person.png" width="24" height="24">
+        <img src="../static/images/person.png" width="24" height="24">
         <div class="StateLayer">
             <div class="LabelText" >MyPage</div>
         </div>
@@ -419,7 +295,3 @@
 </section>
 </body>
 </html>
-
-<!--밑줄 text-decoration: underline;-->
-<!--
-https://developer.mozilla.org/ko/docs/Web/CSS/text-align-->

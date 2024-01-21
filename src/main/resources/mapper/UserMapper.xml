@@ -35,4 +35,20 @@
         SELECT ''
     </select>
 
+    <update id="saveReview" useGeneratedKeys="true" keyProperty="id">
+        UPDATE `review`
+        SET `content` = #{content},
+            `score` = #{score}
+        WHERE `rId` = #{rId} AND `email` = #{email}
+    </update>
+
+<!--
+    <select id="findCategory" resultType="com.vaggietable.server.domain.restaurant">
+        select `latitude`,`longtitude`,
+               `rName`,`scrapId`,`category`,
+               `address`,`menu1`,`menu2`
+        from `restaurant`
+        where `category` = #{category}
+    </select>-->
+
 </mapper>

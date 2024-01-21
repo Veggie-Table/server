@@ -133,7 +133,8 @@
 
             var startBtn = document.getElementById("start_btn");
             if (current >= 2 && current <= max) {
-                existNickname(input.value);
+                startBtn.classList.add("active");
+                startBtn.classList.remove("disabled");
             } else {
                 checkNickname.textContent = "두 글자 이상 입력해주세요";
                 checkNickname.style.color = "#326144";
@@ -141,7 +142,7 @@
                 startBtn.setAttribute("disabled", "disabled");
             }
         }
-
+/*
         function existNickname(nickname) {
 
             let startBtn = document.getElementById("start_btn");
@@ -164,7 +165,7 @@
                 .fail(function(response){
                     alert("Error");
                 });
-        }
+        }*/
 
     </script>
 </section>

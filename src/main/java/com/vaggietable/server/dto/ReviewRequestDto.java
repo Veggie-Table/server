@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class reviewRequestDto {
+public class ReviewRequestDto {
     private Long rId;
-    private String nickname;
+    private String email;
     private String content;
     private float score;
 
