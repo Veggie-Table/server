@@ -11,7 +11,7 @@
 <section class="nick-section">
 
     <div style="display: flex; align-items: center;margin-top: 45px">
-        <button class="back">
+        <button class="back" onclick="history.back()">
             <img src="../static/images/arrow.png" style="width: 18px ; height: 18px">
         </button>
         <span class="title" style="font-weight: 500; font-size: 20px; line-height: 23.87px">회원 가입</span>
@@ -23,7 +23,7 @@
     </ul>
     <form action="/saveNickname" name = "saveNickname" method="POST">
         <div class="nick">
-            <input type="text" id="nickname" name="nickname" maxlength="5" placeholder="닉네임을 입력해주세요" oninput="countChar(this)">
+            <input type="text" id="nickname" name="nickname" maxlength="6" placeholder="닉네임을 입력해주세요" oninput="countChar(this)">
         </div>
         <div>
             <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #0D1510" > <!--수평선 그리기-->

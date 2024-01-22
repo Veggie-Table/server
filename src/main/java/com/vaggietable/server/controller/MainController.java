@@ -56,7 +56,7 @@ public class MainController {
     }
 
     @GetMapping("/nickname")
-    public Boolean checkNickname(@RequestParam String nickname){
+    public String checkNickname(@RequestParam String nickname){
        Boolean isExist;
        String userNickname = userService.checkNickname(nickname);
        if(userNickname!=null){
@@ -64,7 +64,7 @@ public class MainController {
        }else {
            isExist = false;
        }
-        return isExist;
+        return Boolean.toString(isExist);
     }
 
     @PostMapping("/review")
@@ -85,7 +85,7 @@ public class MainController {
         return ResponseEntity.ok("식당정보 등록 완료");
     }
 
-    @GetMapping("/restaurant")
+    @GetMapping("/category")
     public ResponseEntity<?> findCategory(@RequestParam String category){
         List<RestaurantResponseDto> responseDtoList = mainService.findCategory(category);
         return new ResponseEntity<>(responseDtoList, HttpStatus.OK);

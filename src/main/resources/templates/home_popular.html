@@ -2,6 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <title>Home_popular</title>
 </head>
 <style>
@@ -17,8 +24,9 @@
   .top7{
     font-family: Pretendard;
     margin-left: 16px;
-    margin-top: 32px;
     margin-bottom: 8px;
+    margin-top: 32px;
+    margin-bottom: 40px;
   }
   .back{
     margin-left: 12px;
@@ -129,12 +137,126 @@
     font-weight: 300;
     color: #8B8E8C;
   }
+  .frame0{
+      display: flex;
+      align-items: center;
+      height: 56px;
+      margin-top: 21px;
+      margin-bottom: 32px;
+  }
+  .popular_all{
+      font-family: Pretendard;
+      margin-left: 16px;
+  }
+
+  .combobox {
+
+      padding: 8px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 12px 0px #0D15100F;
+      font-family: Pretendard;
+      line-height: 19.1px;
+      font-size: 15px;
+      justify-content: center;
+      border: none;
+      max-width: 100%;
+
+  }
+  .vegan_type{
+
+      border-radius: 8px;
+      gap: 4px;
+      box-shadow: 0px 2px 12px 0px #0D15100F;
+      display: inline-flex;
+      background-color: #FFFFFF;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      /*border: 2px solid #326144; 선택했을 땐 이렇게*/
+  }
+  .vegan{
+      width: 8px;
+      height: 8px;
+      border-radius: 90px;
+      background-color: #326144;
+  }
+  .vegan_option{
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 90px;
+      border: 2px solid #DFEBE4;
+
+  }
+
+  .rest_Img{
+      width: 61px;
+      height:61px;
+      border-radius: 8px;
+      background-color: gainsboro;
+      margin-left: 4px;
+      margin-right: 16px;
+  }
+
+  .rest_Segment{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+  }
+  .rest_frame{
+      width: 215px;
+      height: 35px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      display: inline-flex;
+      margin-bottom: 4px;
+  }
+  .vegan_option_font{
+      margin-left: 2px;
+      font-family: Pretendard;
+      font-size: 8px;
+      font-weight: 300;
+      color: #8B8E8C;
+  }
+  .swiper {
+      position: relative;
+  }
+  .swiper-wrapper{
+      width: 100%;
+      height: auto;
+  }
+  .swiper-slide {
+      display: flex;
+      flex-direction: row;
+      width: auto;
+  }
+  .frame{
+      justify-content: flex-start;
+      align-items: center;
+      display: inline-flex;
+      margin-top:4px;
+      font-family: Pretendard;
+  }
+  .location_font{
+      font-family: Pretendard;
+      font-size: 8px;
+      font-weight: 400;
+      line-height: 9.55px;
+      color: #535654;
+  }
+  .vegan_option_font{
+      margin-left: 2px;
+      font-family: Pretendard;
+      font-size: 8px;
+      font-weight: 300;
+      color: #8B8E8C;
+  }
 </style>
 
   <body>
-  <div style="display: flex; align-items: center;height: 56px;margin-top: 21px">
-    <button class="back">
-      <img src="images/arrow.png" style="width: 18px ; height: 18px">
+  <div class="frame0">
+    <button class="back" onclick="history.back()">
+      <img src="../static/images/arrow.png" style="width: 18px ; height: 18px">
     </button>
   <span class="title">이번 주 인기 맛집</span>
 </div>
@@ -150,15 +272,15 @@
                     <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
        </span>
       <span class="popular_Bookmarker" >
-                    <img src="images/Bookmark.png" width="16" height="16" >
+                    <img src="../static/images/Bookmark.png" width="16" height="16" >
             </span>
     </div>
 
     <div class="popular_place">
-      <img class="popular_placeIcon" src="images/place.png" style="position: relative" width="12" height="12">
+      <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
       <span>식당위치</span>
       <span class="popular_Score">
-                 <img src="images/Star.png" width="12" height="12" >
+                 <img src="../static/images/Star.png" width="12" height="12" >
                  <span>5.0</span>
          </span>
     </div>
@@ -173,9 +295,119 @@
   </div>
 </section>
   <section class="popular_all">
+      <p style="font-weight: 500">이번 주 인기 맛집 <b>전체 목록</b></p>
+          <div class="swiper">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                      <form action="#">
+                          <select class="combobox" name="정렬방식" id="sort" width="75" height="35">
+                              <option value="distance">거리순</option>
+                              <option value="popular">인기순</option>
+                          </select>
+                      </form>
+                  </div>
+                  <div class="swiper-slide">
+                      <form action="#">
+                          <select class="combobox" name="category" id="category" width="126px" height="35">
+                              <option value="한식">한식</option>
+                              <option value="아시안">아시안</option>
+                              <option value="서양식">서양식</option>
+                              <option value="간단식">간단식&혼밥</option>
+                              <option value="뷔페">뷔페</option>
+                              <option value="카페">카페&베이커리</option>
+                              <option value="주점">주점</option>
+                          </select>
+                      </form>
+                  </div>
+                  <div class="swiper-slide">
+                      <div class="vegan_type" style="width: 56px; height: 35px;">
+                          <div class="vegan"></div><span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건</span>
+                      </div>
+                  </div>
+                  <div class="swiper-slide">
+                      <div class="vegan_type" style="width: 84px;height: 35px;">
+                          <aside class="vegan_option"></aside>
+                          <span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건옵션</span>
+                      </div>
+                  </div>
+              </div>
+      </div>
 
+      <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
+      <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+          <div class="rest_Img">img</div>
+          <div class="rest_frame">
+              <div class="frame">
+                  <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+                  <span class="vegan"></span>
+                  <span class="vegan_option_font">비건</span>
+              </div>
+              <div class="frame">
+                  <img src="../static/images/place.png" width="12" height="12">
+                  <span class="location_font">식당위치</span>
+                  <img src="../static/images/Star.png" width="12" height="12" style="margin-left: 8px">
+                  <span class="location_font">4.5</span>
+              </div>
+              <div class="frame" style="margin-top: 12px">
+                  <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
 
+              </div>
+          </div>
+      </div><!--수평선~div닫히는 곳(?)까지가 식당정보 들어가는 부분-->
+      <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
+      <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+          <div class="rest_Img">img</div>
+          <div class="rest_frame">
+              <div class="frame">
+                  <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+                  <a class="vegan_option"></a>
+                  <span class="vegan_option_font">비건옵션</span>
+              </div>
+              <div class="frame">
+                  <img src="../static/images/place.png" width="12" height="12">
+                  <span class="location_font">식당위치</span>
+                  <img src="../static/images/Star.png" width="12" height="12" style="margin-left: 8px">
+                  <span class="location_font">4.5</span>
+              </div>
+              <div class="frame" style="margin-top: 12px">
+                  <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+
+              </div>
+          </div>
+      </div> <!--수평선~div닫히는 곳(?)까지가 식당정보 들어가는 부분-->
+      <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
+      <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+          <div class="rest_Img">img</div>
+          <div class="rest_frame">
+              <div class="frame">
+                  <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+                  <span class="vegan"></span>
+                  <span class="vegan_option_font" >비건</span>
+              </div>
+              <div class="frame">
+                  <img src="../static/images/place.png" width="12" height="12">
+                  <span class="location_font">식당위치</span>
+                  <img src="../static/images/Star.png" width="12" height="12" style="margin-left: 8px">
+                  <span class="location_font">4.5</span>
+              </div>
+              <div class="frame" style="margin-top: 12px">
+                  <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+
+              </div>
+          </div>
+      </div>
   </section>
+  <script>
+      const swiper = new Swiper('.swiper', {
+          direction: 'horizontal',
+          slidesPerView: 'auto',
+          spaceBetween: 6,
+          loop: false,
+          pagination: {
+              el: '.swiper-pagination'
+          }
+      });
+  </script>
 
 </body>
 </html>
