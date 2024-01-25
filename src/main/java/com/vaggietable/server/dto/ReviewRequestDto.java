@@ -9,6 +9,6 @@ public class ReviewRequestDto {
     private Long rId;
     private String email;
     private String content;
-    private float score;
+    private double score;
 
 }

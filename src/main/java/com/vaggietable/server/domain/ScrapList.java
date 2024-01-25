@@ -3,12 +3,16 @@ package com.vaggietable.server.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class ScrapList {
-    private String email;
+    @Id
     private Long scrapId;
-    private Long rId;
+    private String email;
+    private List<Restaurant> rId;
 }

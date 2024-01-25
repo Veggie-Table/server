@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/",
                         "/home/**",
                         "/test/**",
-                        "/signup","/home_login.x","/review","/restaurant").permitAll()
+                        "/signup","/home_login.x").permitAll()
                 .antMatchers("/mytravel/**").hasRole(Role.GUEST.name())
                 .anyRequest().authenticated()
                 .and()

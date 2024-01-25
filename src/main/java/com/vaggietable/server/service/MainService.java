@@ -24,6 +24,7 @@ public class MainService {
     }
     public void saveRestaurantInfo(RestaurantSaveRequestDto dto){
         RestaurantSaveRequestDto requestDto = new RestaurantSaveRequestDto();
+        requestDto.setRName(dto.getRName());
         requestDto.setLatitude(dto.getLatitude());
         requestDto.setLongitude(dto.getLongitude());
         requestDto.setCategory(dto.getCategory());
@@ -36,5 +37,11 @@ public class MainService {
     public List<RestaurantResponseDto> findCategory(String category){
         return restaurantMapper.findCategory(category);
     }
+
+    public List<RestaurantResponseDto> getByViewsOrder(){
+        return restaurantMapper.getByViewsOrder();
+    }
+
+
 
 }

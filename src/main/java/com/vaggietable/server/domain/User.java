@@ -12,11 +12,13 @@ public class User{
     private String name;
     private String email;
     private String nickname;
+    private String token;
 
     @Builder
-    public User(String name, String email) {
+    public User(String name, String email,String token) {
         this.name = name;
         this.email = email;
+        this.token = token;
     }
 
     public User Nickname(String nickname) {

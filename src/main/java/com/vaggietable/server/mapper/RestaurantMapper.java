@@ -10,4 +10,6 @@ import java.util.List;
 public interface RestaurantMapper {
     void saveRestaurantInfo(RestaurantSaveRequestDto restaurant);
     List<RestaurantResponseDto> findCategory(String category);
+
+    List<RestaurantResponseDto> getByViewsOrder();
 }

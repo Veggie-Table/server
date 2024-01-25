@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Getter
 public class SessionUser implements Serializable {
-    private String name, email, picture,nickname;
+    private String name, email,nickname;
 
     public SessionUser(User user) {
         this.name = user.getName();

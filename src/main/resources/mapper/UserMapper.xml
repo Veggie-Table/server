@@ -3,7 +3,7 @@
 <mapper namespace="com.vaggietable.server.mapper.UserMapper">
 
     <insert id="save"  useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO `user` (`name`,`email`) VALUES(#{name}, #{email})
+        INSERT INTO `user` (`name`,`email`,`token`) VALUES(#{name}, #{email},#{token})
     </insert>
 
     <select id="findByEmail" resultType="com.vaggietable.server.domain.User">
@@ -31,9 +31,6 @@
         WHERE `email` = #{email}
     </select>
 
-    <select id="findScrapIdByEmail" parameterType="map" resultType="string">
-        SELECT ''
-    </select>
 
     <update id="saveReview" useGeneratedKeys="true" keyProperty="id">
         UPDATE `review`

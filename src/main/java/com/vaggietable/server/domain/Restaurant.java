@@ -1,10 +1,13 @@
 package com.vaggietable.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,8 +18,8 @@ public class Restaurant {
 
     private double latitude;
     private double longitude;
-/*    private Long scrapId;
-    private Long reviewId*/;
+    private long scrapId;
+    private List<Review> reviewId;
     private String category;
     private String address;
     private String menu1;

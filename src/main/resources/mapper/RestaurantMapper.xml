@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vaggietable.server.mapper.RestaurantMapper">
+
+    <insert id="saveRestaurantInfo" keyProperty="rId">
+        insert into `restaurant` (`rName`,`latitude`,`longitude`,`category`,`address`,`menu1`,`menu2`)
+        values (#{rName},#{latitude},#{longitude},#{category},#{address},#{menu1},#{menu2})
+    </insert>
+
+    <select id="findRestaurantById" resultType="com.vaggietable.server.dto.RestaurantResponseDto">
+        select `category`,
+               `address`,
+               `menu1`,
+               `menu2`,
+               `rName`
+        where `rId` = #{rId}
+        from `restaurant`
+    </select>
+
+    <select id="findCategory" resultType="com.vaggietable.server.dto.RestaurantResponseDto">
+        select `category`,
+               `address`,
+               `menu1`,
+               `menu2`,
+               `rName`
+            where `category` = #{category}
+        from `restaurant`
+    </select>
+
+    <select id="getByViewsOrder" resultType="com.vaggietable.server.dto.RestaurantResponseDto">
+        select `rId`,
+               `address`,
+               `menu1`,
+               `menu2`,
+               `rName`
+        from `restaurant`
+        order by `click` desc
+    </select>
+
+</mapper>

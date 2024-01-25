@@ -21,6 +21,7 @@ public class OAuthAttributes {
         this.nameAttributeKey=nameAttributeKey;
         this.name=name;
         this.email=email;
+
     }
     public static OAuthAttributes of(String registrationId,
                                      String userNameAttributeName,

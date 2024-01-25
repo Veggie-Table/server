@@ -8,14 +8,17 @@ import com.vaggietable.server.dto.ReviewRequestDto;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
 import com.vaggietable.server.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
-
+@Slf4j
 @Controller
 public class MainController {
     private final UserMapper userMapper;
@@ -74,6 +77,7 @@ public class MainController {
         requestDto.setEmail(user.getEmail());
         requestDto.setContent(dto.getContent());
         requestDto.setScore(dto.getScore());
+        requestDto.setRId(dto.getRId());
         mainService.saveReview(dto);
         return ResponseEntity.ok("리뷰작성완료");
 
@@ -91,5 +95,10 @@ public class MainController {
         return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
     }
 
+    @GetMapping("/byViews")
+    public ResponseEntity<List<RestaurantResponseDto>> getByViewsOrder(){
+        List<RestaurantResponseDto> responseDtoList = mainService.getByViewsOrder();
+        return new ResponseEntity<>(responseDtoList,HttpStatus.OK);
+    }
 
 }

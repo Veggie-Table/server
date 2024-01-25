@@ -11,13 +11,13 @@ import org.springframework.lang.Nullable;
 @Getter
 @NoArgsConstructor
 public class RestaurantSaveRequestDto {
+    private String rName;
     private double latitude;
     private double longitude;
   /*  @Nullable
     private Long reviewId;*/
     private String category;
     private String address;
-    private String rName;
     private String menu1;
     private String menu2;
 
