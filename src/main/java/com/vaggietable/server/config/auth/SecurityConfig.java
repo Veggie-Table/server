@@ -38,8 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(
-                        "/error",
-                        "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",
                         "/**/*.svg",
@@ -51,7 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/home/**",
                         "/test/**",
                         "/signup","/home_login.x").permitAll()
-                .antMatchers("/mytravel/**").hasRole(Role.GUEST.name())
                 .anyRequest().authenticated()
                 .and()
                 .logout().logoutSuccessUrl("/")

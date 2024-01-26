@@ -6,11 +6,17 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <link rel="stylesheet" href="home_category.css">
     <script
             src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <title>Home_category</title>
     <style>
+        .home-section{
+            background-color: #FAFAFA;
+            width: auto;
+        }
         .title{
             font-family: Pretendard;
             letter-spacing: 0em;
@@ -34,7 +40,7 @@
             font-size: 16px;
             font-weight: 500;
         }
-        .korean,.Asian,.Western{
+        .tab_wrap{
             display: flex;
             align-content: center;
             align-items: center;
@@ -42,10 +48,26 @@
             width: 106px;
             height: 48px;
         }
+        .tab-lable{
+            cursor: pointer;
+            flex: 1;
+            order: -1;
+            text-align: center;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) .2s;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tab-switch:checked  {
+            color:#326144;
+        }
+
+
         .align{
             display: flex;
             flex-direction: row;
             gap:8px;
+            position: sticky;
+            margin-bottom: 8px;
         }
 
         .combobox {
@@ -53,7 +75,7 @@
             padding: 8px;
             border-radius: 8px;
             box-shadow: 0px 2px 12px 0px #0D15100F;
-            margin-top: 14px;
+            margin-top: 12px;
             font-family: Pretendard;
             line-height: 19.1px;
             font-size: 15px;
@@ -62,7 +84,7 @@
 
         }
         .vegan_type{
-            margin-top: 14px;
+            margin-top: 12px;
             border-radius: 8px;
             gap: 4px;
             box-shadow: 0px 2px 12px 0px #0D15100F;
@@ -117,11 +139,11 @@
             margin-top:4px;
             font-family: Pretendard;
         }
-       /* !* <p>와 <span> 요소의 마진과 패딩 초기화 *!
-        .frame p, .frame span {
-            margin: 0;
-            padding: 0;
-        }*/
+        /* !* <p>와 <span> 요소의 마진과 패딩 초기화 *!
+         .frame p, .frame span {
+             margin: 0;
+             padding: 0;
+         }*/
         .location_font{
             font-family: Pretendard;
             font-size: 8px;
@@ -136,75 +158,147 @@
             font-weight: 300;
             color: #8B8E8C;
         }
+        .banner_img {
+            background-image: url("../static/images/KoreanFood.png");
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            width: auto;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+        }
+        .banner_font{
+            font-family: Pretendard;
+            color: #FFFFFF;
+            margin-left: 16px;
+            margin-top: 36px;
+        }
+        .sticky-banner {
+            position: sticky;
+            top: 0;
+            z-index: 0;
+            background-color: #FAFAFA;
+        }
+        .sticky-option{
+            position: sticky;
+            z-index: 1;
+            top:100px;
+            /*background-color: #FAFAFA;*/
+        }
 
-s
+        .swiper {
+            width: 100%;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+        }
+        .horizon{
+            width: 328px;
+            border: 1px;
+            angle: -0 deg;
+            border: 1px solid #F1EFEF;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
     </style>
 </head>
 <body>
 <section class="home-section">
-    <div style="display: flex; align-items: center;height: 56px;margin-top: 21px">
-        <button class="back">
-            <img src="images/arrow.png" style="width: 18px ; height: 18px">
-        </button>
-        <span class="title">카테고리</span>
-    </div>
-    <div class="tab">
-        <div id = korean class="korean">한식</div>
-        <div id = asian class="Asian">아시안</div>
-        <div id = western class="Western">서양식</div>
-    </div>
-    <img src="images/KoreanFood.png" width="360" height="120">
-    <div class = align>
-        <form action="#">
-            <select class="combobox" name="정렬방식" id="sort" width ="76" height ="35" style="margin-left: 8px">
-                <option value="distance">거리순</option>
-                <option value="popular">인기순</option>
-            </select>
-        </form>
-        <form action="#">
-            <select class="combobox" name="지역선택" id="location" width="99px" height ="35">
-                <option value="nearBy">내 주변</option>
-                <option value="Seoul">서울</option>
-                <option value="Gyeonggi">경기</option>
-                <option value="Incheon">인천</option>
-                <option value="puAndUl">부산&울산</option>
-                <option value="daeAndSe">대전&세종</option>
-                <option value="Daegu">대구</option>
-                <option value="Gyeonggi">광주</option>
-                <option value="Jeju">제주</option>
-                <option value="Gangwon">강원</option>
-                <option value="Chungcheong">충북&충남</option>
-                <option value="Jeolla">전북&전남</option>
-                <option value="Gyeongsang">경북&경남</option>
-            </select>
-        </form>
-        <div class="vegan_type" style="width: 56px; height: 35px;">
-          <aside class="vegan"></aside><span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건</span>
+    <div class="sticky-banner">
+        <div style="display: flex; align-items: center;height: 56px;margin-top: 21px">
+            <button class="back" onclick="history.back()"> <!--뒤로가기 : window - history 객체의 back-->
+                <img src="../static/images/arrow.png" style="width: 18px ; height: 18px">
+            </button>
+            <span class="title">카테고리</span>
         </div>
-        <div class="vegan_type" style="width: 84px;height: 35px;">
-          <aside class="vegan_option"></aside>
-            <span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건옵션</span>
-        </div>
+        <div class="tab-container">
+            <div class="tab-wrap">
+                <input id="TAB02-01" type="radio" name="TAB02" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB02-01">한식</label>
 
+                <input id="TAB02-02" type="radio" name="TAB02" class="tab-switch" /><label class="tab-label" for="TAB02-02">아시안</label>
+
+                <input id="TAB02-03" type="radio" name="TAB02" class="tab-switch" /><label class="tab-label" for="TAB02-03">서양식</label>
+
+                <input id="TAB02-04" type="radio" name="TAB02" class="tab-switch" /><label class="tab-label" for="TAB02-04">간단식 & 혼밥</label>
+
+                <input id="TAB02-05" type="radio" name="TAB02" class="tab-switch" /><label class="tab-label" for="TAB02-05">뷔페</label>
+
+                <input id="TAB02-06" type="radio" name="TAB02" class="tab-switch" /><label class="tab-label" for="TAB02-06">카페 & 베이커리</label>
+
+                <input id="TAB02-07" type="radio" name="TAB02" class="tab-switch" /><label class="tab-label" for="TAB02-07">주점</label>
+
+            </div>
+        </div>
+    </div>
+    <!--배너이미지-->
+    <div class="banner_img">
+        <div class="banner_font" style="font-size: 20px; font-weight: 700">한식</div>
+        <div class="banner_font" style="font-size: 12px; font-weight: 300; margin-top: 10px">: 든든하고 익숙한 한국의 요리</div>
+    </div>
+
+    <!--배너이미지-->
+    <script>
+        const swiper = new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'vertical',
+            loop: false,
+        });
+    </script>
+
+    <div class="sticky-option">
+        <div class = align>
+            <form action="#">
+                <select class="combobox" name="정렬방식" id="sort" width ="76" height ="35" style="margin-left: 8px">
+                    <option value="distance">거리순</option>
+                    <option value="popular">인기순</option>
+                </select>
+            </form>
+            <form action="#">
+                <select class="combobox" name="지역선택" id="location" width="99px" height ="35">
+                    <option value="nearBy">내 주변</option>
+                    <option value="Seoul">서울</option>
+                    <option value="Gyeonggi">경기</option>
+                    <option value="Incheon">인천</option>
+                    <option value="puAndUl">부산&울산</option>
+                    <option value="daeAndSe">대전&세종</option>
+                    <option value="Daegu">대구</option>
+                    <option value="Gyeonggi">광주</option>
+                    <option value="Jeju">제주</option>
+                    <option value="Gangwon">강원</option>
+                    <option value="Chungcheong">충북&충남</option>
+                    <option value="Jeolla">전북&전남</option>
+                    <option value="Gyeongsang">경북&경남</option>
+                </select>
+            </form>
+            <div class="vegan_type" style="width: 56px; height: 35px;">
+                <aside class="vegan"></aside><span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건</span>
+            </div>
+            <div class="vegan_type" style="width: 84px;height: 35px;">
+                <aside class="vegan_option"></aside>
+                <span style="font-family: pretendard;font-size: 15px; line-height: 19.1px">비건옵션</span>
+            </div>
+        </div>
     </div>
     <!--수평선~div닫히는 곳(?)까지가 식당정보 들어가는 부분-->
-    <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
-        <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
-            <div class="rest_Img">img</div>
-            <div class="rest_frame">
-                <div class="frame">
+    <hr class="horizon">
+    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+        <div class="rest_Img">img</div>
+        <div class="rest_frame">
+            <div class="frame">
                 <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
-                    <span class="vegan"></span>
-                    <span class="vegan_option_font">비건</span>
-                </div>
-                <div class="frame">
-                    <img src="../static/images/place.png" width="12" height="12">
-                    <span class="location_font">식당위치</span>
-                    <img src="../static/images/Star.png" width="12" height="12" style="margin-left: 8px">
-                    <span class="location_font">4.5</span>
-                </div>
-                <div class="frame" style="margin-top: 12px">
-                    <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+                <span class="vegan"></span>
+                <span class="vegan_option_font">비건</span>
+            </div>
+            <div class="frame">
+                <img src="images/place.png" width="12" height="12">
+                <span class="location_font">식당위치</span>
+                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
+                <span class="location_font">4.5</span>
+            </div>
+            <div class="frame" style="margin-top: 12px">
+                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
 
             </div>
         </div>
@@ -215,13 +309,13 @@ s
         <div class="rest_frame">
             <div class="frame">
                 <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
-                <a class="vegan_option"></a>
+                <aside class="vegan_option"></aside>
                 <span class="vegan_option_font">비건옵션</span>
             </div>
             <div class="frame">
-                <img src="../static/images/place.png" width="12" height="12">
+                <img src="images/place.png" width="12" height="12">
                 <span class="location_font">식당위치</span>
-                <img src="../static/images/Star.png" width="12" height="12" style="margin-left: 8px">
+                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
                 <span class="location_font">4.5</span>
             </div>
             <div class="frame" style="margin-top: 12px">
@@ -240,9 +334,9 @@ s
                 <span class="vegan_option_font" >비건</span>
             </div>
             <div class="frame">
-                <img src="../static/images/place.png" width="12" height="12">
+                <img src="images/place.png" width="12" height="12">
                 <span class="location_font">식당위치</span>
-                <img src="../static/images/Star.png" width="12" height="12" style="margin-left: 8px">
+                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
                 <span class="location_font">4.5</span>
             </div>
             <div class="frame" style="margin-top: 12px">
@@ -251,6 +345,66 @@ s
             </div>
         </div>
     </div>
-    </section>
+    <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
+    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+        <div class="rest_Img">img</div>
+        <div class="rest_frame">
+            <div class="frame">
+                <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+                <aside class="vegan_option"></aside>
+                <span class="vegan_option_font">비건옵션</span>
+            </div>
+            <div class="frame">
+                <img src="images/place.png" width="12" height="12">
+                <span class="location_font">식당위치</span>
+                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
+                <span class="location_font">4.5</span>
+            </div>
+            <div class="frame" style="margin-top: 12px">
+                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+            </div>
+        </div>
+    </div>
+    <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
+    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+        <div class="rest_Img">img</div>
+        <div class="rest_frame">
+            <div class="frame">
+                <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+                <aside class="vegan_option"></aside>
+                <span class="vegan_option_font">비건옵션</span>
+            </div>
+            <div class="frame">
+                <img src="images/place.png" width="12" height="12">
+                <span class="location_font">식당위치</span>
+                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
+                <span class="location_font">4.5</span>
+            </div>
+            <div class="frame" style="margin-top: 12px">
+                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+            </div>
+        </div>
+    </div>
+    <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
+    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
+        <div class="rest_Img">img</div>
+        <div class="rest_frame">
+            <div class="frame">
+                <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
+                <aside class="vegan_option"></aside>
+                <span class="vegan_option_font">비건옵션</span>
+            </div>
+            <div class="frame">
+                <img src="images/place.png" width="12" height="12">
+                <span class="location_font">식당위치</span>
+                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
+                <span class="location_font">4.5</span>
+            </div>
+            <div class="frame" style="margin-top: 12px">
+                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

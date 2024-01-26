@@ -1,0 +1,269 @@
+.tab-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.tab-label {
+    color: #535654;
+    cursor: pointer;
+    flex: 1;
+    order: -1;
+    padding: 14px 24px;
+    position: relative;
+    text-align: center;
+    transition: cubic-bezier(0.4, 0, 0.2, 1) .2s;
+    user-select: none;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+.tab-switch:checked + .tab-label {
+    color: black;
+}
+.tab-label::after {
+    background: #326144;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 3px;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(100%);
+    transition: cubic-bezier(0.4, 0, 0.2, 1) .2s 80ms;
+    width: 100%;
+    z-index: 1;
+}
+
+.tab-switch:checked ~ .tab-label::after {
+    transform: translateX(-100%);
+}
+
+.tab-switch:checked + .tab-label::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.tab-switch:checked ~ .tab-content {
+    transform: translateX(30%);
+}
+
+.tab-switch:checked + .tab-label + .tab-content {
+    height: auto;
+    opacity: 1;
+    order: 1;
+    pointer-events:auto;
+    transform: translateX(0);
+}
+
+.tab-wrap::after {
+    order: -1;
+    width: 100%;
+}
+
+.tab-switch {
+    display: none;
+}
+
+/* ============================== */
+
+
+/* ============================== */
+
+.tab-container {
+    max-width: calc(100vw - 10px*2);
+    width: 600px;
+    overflow-x: hidden;
+    margin-left: 11px;
+}
+
+.tab-wrap {
+    width: 780px;
+}
+
+/* ============================== */
+
+.tab-container {
+    overflow: hidden;
+    overflow-x: auto;
+    position: relative;
+}
+.tab-wrap {
+    box-shadow: none;
+    overflow: visible;
+}
+
+
+.tab-wrap::before {
+    height: 0;
+    order: 1;
+    width: 100%;
+}
+
+/* ============================== */
+
+.home-section{
+    background-color: #FAFAFA;
+    width: auto;
+    font-family: Pretendard;
+}
+.title{
+
+    letter-spacing: 0em;
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+.back{
+    margin-left: 12px;
+    border: none;
+    background : none;
+    margin-right: 5px;
+}
+
+.align{
+    display: flex;
+    flex-direction: row;
+    gap:8px;
+    position: sticky;
+    margin-bottom: 8px;
+}
+
+.combobox {
+    display: inline-flex;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 12px 0px #0D15100F;
+    margin-top: 12px;
+    font-family: Pretendard;
+    line-height: 19.1px;
+    font-size: 15px;
+    justify-content: center;
+    border: none;
+
+}
+.vegan_type{
+    margin-top: 12px;
+    border-radius: 8px;
+    gap: 4px;
+    box-shadow: 0px 2px 12px 0px #0D15100F;
+    display: inline-flex;
+    background-color: #FFFFFF;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    /*border: 2px solid #326144; 선택했을 땐 이렇게*/
+}
+.vegan{
+    width: 8px;
+    height: 8px;
+    border-radius: 90px;
+    background-color: #326144;
+}
+.vegan_option{
+    width: 5.5px;
+    height: 5.5px;
+    border-radius: 90px;
+    border: 2px solid #DFEBE4;
+
+}
+
+.rest_Img{
+    width: 61px;
+    height:61px;
+    border-radius: 8px;
+    background-color: gainsboro;
+    margin-left: 4px;
+    margin-right: 16px;
+}
+
+.rest_Segment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.rest_frame{
+    width: 215px;
+    height: 35px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    display: inline-flex;
+    margin-bottom: 4px;
+}
+.frame{
+    justify-content: flex-start;
+    align-items: center;
+    display: inline-flex;
+    margin-top:4px;
+    font-family: Pretendard;
+}
+/* !* <p>와 <span> 요소의 마진과 패딩 초기화 *!
+ .frame p, .frame span {
+     margin: 0;
+     padding: 0;
+ }*/
+.location_font{
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 400;
+    line-height: 9.55px;
+    color: #535654;
+}
+.vegan_option_font{
+    margin-left: 2px;
+    font-family: Pretendard;
+    font-size: 8px;
+    font-weight: 300;
+    color: #8B8E8C;
+}
+.banner_img {
+    background-image: url("../static/images/KoreanFood.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: auto;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+.banner_font{
+    font-family: Pretendard;
+    color: #FFFFFF;
+    margin-left: 16px;
+    margin-top: 36px;
+}
+.sticky-banner {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    background-color: #FAFAFA;
+}
+.sticky-option{
+    position: sticky;
+    z-index: 1;
+    top:100px;
+    /*background-color: #FAFAFA;*/
+}
+
+.swiper {
+    width: 100%;
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+.horizon{
+    width: 328px;
+    border: 1px;
+    angle: -0 deg;
+    border: 1px solid #F1EFEF;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.tab-container::-webkit-scrollbar {
+    display: none;
+}
