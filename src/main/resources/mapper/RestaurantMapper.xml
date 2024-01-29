@@ -18,15 +18,17 @@
     </select>
 
     <select id="findCategory" resultType="com.vaggietable.server.dto.RestaurantResponseDto">
-        select `category`,
-               `address`,
-               `menu1`,
-               `menu2`,
-               `rName`
-            where `category` = #{category}
-        from `restaurant`
+        SELECT
+            category,
+            address,
+            menu1,
+            menu2,
+            rName
+        FROM
+            restaurant
+        WHERE
+            category = #{category}
     </select>
-
     <select id="getByViewsOrder" resultType="com.vaggietable.server.dto.RestaurantResponseDto">
         select `rId`,
                `address`,

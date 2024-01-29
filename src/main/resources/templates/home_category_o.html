@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
     <link
@@ -12,197 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <title>Home_category</title>
-    <style>
-        .home-section{
-            background-color: #FAFAFA;
-            width: auto;
-        }
-        .title{
-            font-family: Pretendard;
-            letter-spacing: 0em;
-            text-align: left;
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 24px;
-        }
-        .back{
-            margin-left: 12px;
-            border: none;
-            background : none;
-            margin-right: 5px;
-        }
-        .tab{
-            margin-left: 12px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            font-family: Pretendard;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .tab_wrap{
-            display: flex;
-            align-content: center;
-            align-items: center;
-            justify-content: center;
-            width: 106px;
-            height: 48px;
-        }
-        .tab-lable{
-            cursor: pointer;
-            flex: 1;
-            order: -1;
-            text-align: center;
-            transition: cubic-bezier(0.4, 0, 0.2, 1) .2s;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .tab-switch:checked  {
-            color:#326144;
-        }
 
-
-        .align{
-            display: flex;
-            flex-direction: row;
-            gap:8px;
-            position: sticky;
-            margin-bottom: 8px;
-        }
-
-        .combobox {
-            display: inline-flex;
-            padding: 8px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 12px 0px #0D15100F;
-            margin-top: 12px;
-            font-family: Pretendard;
-            line-height: 19.1px;
-            font-size: 15px;
-            justify-content: center;
-            border: none;
-
-        }
-        .vegan_type{
-            margin-top: 12px;
-            border-radius: 8px;
-            gap: 4px;
-            box-shadow: 0px 2px 12px 0px #0D15100F;
-            display: inline-flex;
-            background-color: #FFFFFF;
-            height: 35px;
-            align-items: center;
-            justify-content: center;
-            /*border: 2px solid #326144; 선택했을 땐 이렇게*/
-        }
-        .vegan{
-            width: 8px;
-            height: 8px;
-            border-radius: 90px;
-            background-color: #326144;
-        }
-        .vegan_option{
-            width: 5.5px;
-            height: 5.5px;
-            border-radius: 90px;
-            border: 2px solid #DFEBE4;
-
-        }
-
-        .rest_Img{
-            width: 61px;
-            height:61px;
-            border-radius: 8px;
-            background-color: gainsboro;
-            margin-left: 4px;
-            margin-right: 16px;
-        }
-
-        .rest_Segment{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        .rest_frame{
-            width: 215px;
-            height: 35px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            display: inline-flex;
-            margin-bottom: 4px;
-        }
-        .frame{
-            justify-content: flex-start;
-            align-items: center;
-            display: inline-flex;
-            margin-top:4px;
-            font-family: Pretendard;
-        }
-        /* !* <p>와 <span> 요소의 마진과 패딩 초기화 *!
-         .frame p, .frame span {
-             margin: 0;
-             padding: 0;
-         }*/
-        .location_font{
-            font-family: Pretendard;
-            font-size: 8px;
-            font-weight: 400;
-            line-height: 9.55px;
-            color: #535654;
-        }
-        .vegan_option_font{
-            margin-left: 2px;
-            font-family: Pretendard;
-            font-size: 8px;
-            font-weight: 300;
-            color: #8B8E8C;
-        }
-        .banner_img {
-            background-image: url("../static/images/KoreanFood.png");
-            background-repeat: no-repeat;
-            background-size: 100% auto;
-            width: auto;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-        }
-        .banner_font{
-            font-family: Pretendard;
-            color: #FFFFFF;
-            margin-left: 16px;
-            margin-top: 36px;
-        }
-        .sticky-banner {
-            position: sticky;
-            top: 0;
-            z-index: 0;
-            background-color: #FAFAFA;
-        }
-        .sticky-option{
-            position: sticky;
-            z-index: 1;
-            top:100px;
-            /*background-color: #FAFAFA;*/
-        }
-
-        .swiper {
-            width: 100%;
-        }
-
-        .swiper-wrapper {
-            display: flex;
-        }
-        .horizon{
-            width: 328px;
-            border: 1px;
-            angle: -0 deg;
-            border: 1px solid #F1EFEF;
-            margin-top: 16px;
-            margin-bottom: 16px;
-        }
-
-    </style>
 </head>
 <body>
 <section class="home-section">
@@ -282,69 +92,30 @@
         </div>
     </div>
     <!--수평선~div닫히는 곳(?)까지가 식당정보 들어가는 부분-->
-    <hr class="horizon">
-    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
-        <div class="rest_Img">img</div>
-        <div class="rest_frame">
-            <div class="frame">
-                <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
-                <span class="vegan"></span>
-                <span class="vegan_option_font">비건</span>
-            </div>
-            <div class="frame">
-                <img src="images/place.png" width="12" height="12">
-                <span class="location_font">식당위치</span>
-                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
-                <span class="location_font">4.5</span>
-            </div>
-            <div class="frame" style="margin-top: 12px">
-                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
-
-            </div>
-        </div>
-    </div><!--수평선~div닫히는 곳(?)까지가 식당정보 들어가는 부분-->
-    <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
-    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
-        <div class="rest_Img">img</div>
-        <div class="rest_frame">
-            <div class="frame">
-                <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
-                <aside class="vegan_option"></aside>
-                <span class="vegan_option_font">비건옵션</span>
-            </div>
-            <div class="frame">
-                <img src="images/place.png" width="12" height="12">
-                <span class="location_font">식당위치</span>
-                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
-                <span class="location_font">4.5</span>
-            </div>
-            <div class="frame" style="margin-top: 12px">
-                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
-
-            </div>
-        </div>
-    </div> <!--수평선~div닫히는 곳(?)까지가 식당정보 들어가는 부분-->
-    <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
-    <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
-        <div class="rest_Img">img</div>
-        <div class="rest_frame">
-            <div class="frame">
-                <div style="font-weight: 500;font-size: 16px; margin-right: 8px;">식당명</div>
-                <span class="vegan"></span>
-                <span class="vegan_option_font" >비건</span>
-            </div>
-            <div class="frame">
-                <img src="images/place.png" width="12" height="12">
-                <span class="location_font">식당위치</span>
-                <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
-                <span class="location_font">4.5</span>
-            </div>
-            <div class="frame" style="margin-top: 12px">
-                <b style="font-size: 8px;">한식</b><span style="font-size: 8px;">&nbsp;· 대표메뉴1 · 대표메뉴2</span>
-
+    <div id="restaurant-container">
+        <hr class="horizon">
+        <div th:each="restaurant : ${restaurants}" class="rest_Segment">
+            <div class="rest_Img">img</div>
+            <div class="rest_frame">
+                <div class="frame">
+                    <div style="font-weight: 500; font-size: 16px; margin-right: 8px;" th:text="${restaurant.rName}"></div>
+                    <span class="vegan"></span>
+                    <span class="vegan_option_font">비건</span>
+                </div>
+                <div class="frame">
+                    <img src="images/place.png" width="12" height="12">
+                    <span class="location_font" th:text="${restaurant.address}"></span>
+                    <img src="images/Star.png" width="12" height="12" style="margin-left: 8px">
+                    <span class="location_font" th:text="${restaurant.score}"></span>
+                </div>
+                <div class="frame" style="margin-top: 12px">
+                    <b style="font-size: 8px;" th:text="${restaurant.category}"></b>
+                    <span style="font-size: 8px;">&nbsp;· <span th:text="${restaurant.menu1}"></span> · <span th:text="${restaurant.menu2}"></span></span>
+                </div>
             </div>
         </div>
     </div>
+
     <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #F1EFEF;margin-top: 16px;margin-bottom: 16px;"> <!--수평선 그리기-->
     <div class="rest_Segment"> <!--얘를 먼저 가로정렬하고-->
         <div class="rest_Img">img</div>
@@ -408,3 +179,48 @@
 </section>
 </body>
 </html>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const tabSwitches = document.querySelectorAll('.tab-switch');
+        const restaurantSegments = document.querySelectorAll('.rest_Segment');
+
+        tabSwitches.forEach(function(tabSwitch, index) {
+            tabSwitch.addEventListener('click', function() {
+                const selectedCategory = tabSwitch.getAttribute('for');
+                filterRestaurants(selectedCategory);
+            });
+        });
+
+        function filterRestaurants(category) {
+            // 서버로 AJAX 요청 보내기
+            fetch('/category?category=' + category)
+                .then(response => response.json())
+                .then(data => {
+                    // 서버에서 받아온 데이터로 화면 업데이트
+                    updateRestaurantList(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+
+        function updateRestaurantList(restaurants) {
+            restaurantSegments.forEach(function(restaurantSegment, index) {
+                const categoryLabel = restaurantSegment.querySelector('.frame b').innerText;
+
+                if (restaurants.length > 0 && categoryLabel === restaurants[0].category) {
+                    // 해당 카테고리에 해당하는 음식점 리스트 업데이트
+                    const restaurant = restaurants.shift();  // 리스트에서 첫 번째 음식점을 가져옴
+
+                    // 화면 업데이트 (텍스트, 이미지 등)
+                    restaurantSegment.querySelector('.frame div').innerText = restaurant.rName;
+                    // 다른 필요한 업데이트도 동일한 방식으로 처리
+
+                    restaurantSegment.style.display = 'block';
+                } else {
+                    restaurantSegment.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>

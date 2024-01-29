@@ -37,19 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .authorizeRequests()
-                .antMatchers(
-                        "/**/*.png",
-                        "/**/*.gif",
-                        "/**/*.svg",
-                        "/**/*.jpg",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js",
-                        "/",
-                        "/home/**",
-                        "/test/**",
-                        "/signup","/home_login.x").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers().permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/")
                 .and()
