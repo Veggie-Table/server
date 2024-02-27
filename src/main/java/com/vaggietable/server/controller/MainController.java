@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @Slf4j
@@ -58,16 +59,13 @@ public class MainController {
         return "home_gps_o";
     }
 
-    @GetMapping("/nickname")
-    public String checkNickname(@RequestParam String nickname){
-       Boolean isExist;
-       String userNickname = userService.checkNickname(nickname);
-       if(userNickname!=null){
-           isExist = true;
-       }else {
-           isExist = false;
-       }
-        return Boolean.toString(isExist);
+    @PostMapping("/checkNickname")
+    public ResponseEntity<Map<String, Boolean>> checkNickname(@RequestBody Map<String, String> request) {
+        String nickname = request.get("nickname");
+        boolean exists = userService.checkNickname(nickname);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/review")
@@ -80,7 +78,6 @@ public class MainController {
         requestDto.setRId(dto.getRId());
         mainService.saveReview(dto);
         return ResponseEntity.ok("리뷰작성완료");
-
     }
 
     @PostMapping("/restaurant")
@@ -99,6 +96,6 @@ public class MainController {
     public ResponseEntity<List<RestaurantResponseDto>> getByViewsOrder(){
         List<RestaurantResponseDto> responseDtoList = mainService.getByViewsOrder();
         return new ResponseEntity<>(responseDtoList,HttpStatus.OK);
-    }
+    } //조회순 정렬
 
 }

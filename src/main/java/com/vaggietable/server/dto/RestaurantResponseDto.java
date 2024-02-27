@@ -34,6 +34,5 @@ public class RestaurantResponseDto {
     @JsonProperty("reviewId")
     private List<Review> reviewId;
 
-    // Constructors, getters, setters, etc.
 }
 //메인, 카테고리

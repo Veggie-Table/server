@@ -6,6 +6,7 @@ import com.vaggietable.server.dto.ReviewRequestDto;
 import com.vaggietable.server.mapper.RestaurantMapper;
 import com.vaggietable.server.mapper.UserMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -41,7 +42,6 @@ public class MainService {
     public List<RestaurantResponseDto> getByViewsOrder(){
         return restaurantMapper.getByViewsOrder();
     }
-
 
 
 }

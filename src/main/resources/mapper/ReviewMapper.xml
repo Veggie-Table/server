@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vaggietable.server.mapper.ReviewMapper">
+    <insert id="saveReview" keyProperty="reviewId">
+        insert into `review` (`email`,`content`,`score`,`rId`)
+        values (#{email},#{content},#{score},#{rId})
+    </insert>
+</mapper>

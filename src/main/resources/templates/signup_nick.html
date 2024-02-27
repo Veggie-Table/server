@@ -23,7 +23,7 @@
     </ul>
     <form action="/saveNickname" name = "saveNickname" method="POST">
         <div class="nick">
-            <input type="text" id="nickname" name="nickname" maxlength="6" placeholder="닉네임을 입력해주세요" oninput="countChar(this)">
+            <input type="text" id="nickname" name="nickname" maxlength="6" placeholder="닉네임을 입력해주세요" oninput="countChar(this); checkNickname();">
         </div>
         <div>
             <hr style="width: 328px;border: 1px;angle: -0 deg;border: 1px solid #0D1510" > <!--수평선 그리기-->
@@ -41,12 +41,12 @@
             var checkNickname = document.getElementById("checkNickname");
 
             document.getElementById("countChar").textContent = current + "/" + max;
-            // 글자수 카운트
 
             var startBtn = document.getElementById("start_btn");
             if (current >= 2 && current <= max) {
                 startBtn.classList.add("active");
                 startBtn.classList.remove("disabled");
+                checkNickname.textContent = "2자 ~ 6자 사이로 입력해주세요.";
             } else {
                 checkNickname.textContent = "두 글자 이상 입력해주세요";
                 checkNickname.style.color = "#326144";
@@ -54,31 +54,33 @@
                 startBtn.setAttribute("disabled", "disabled");
             }
         }
-/*
-        function existNickname(nickname) {
 
-            let startBtn = document.getElementById("start_btn");
+        function checkNickname() {
+            var nickname = document.getElementById("nickname").value;
 
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/checkNickname", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
 
-            $.get('/nickname')
-                .data(nickname)
-                .done(function(response){
-
-                    let isExist = JSON.parse(response);
-
-                    if (!isExist) {
-                        startBtn.classList.add("active");
-                        startBtn.removeAttribute("disabled");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        var checkNickname = document.getElementById("checkNickname");
+                        if (response.exists) {
+                            checkNickname.textContent = "이미 존재하는 닉네임입니다.";
+                        } else {
+                            checkNickname.textContent = "사용 가능한 닉네임입니다.";
+                        }
                     } else {
-                        startBtn.classList.remove("active");
-                        startBtn.setAttribute("disabled", "disabled");
+                        console.error("서버 오류:", xhr.status);
                     }
-                })
-                .fail(function(response){
-                    alert("Error");
-                });
-        }*/
+                }
+            };
 
+            var data = JSON.stringify({ nickname: nickname });
+            xhr.send(data);
+        }
     </script>
 </section>
 

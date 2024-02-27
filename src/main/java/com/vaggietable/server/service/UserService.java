@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class UserService {
@@ -31,9 +32,15 @@ public class UserService {
         return null;
     }
 
-    public String checkNickname(String nickname){
-        userMapper.checkNickname(nickname);
-        return nickname;
+    public Boolean checkNickname(String nickname){
+        Boolean isExist;
+        String userNickname = userMapper.checkNickname(nickname);
+        if(userNickname !=null){
+            isExist = true;
+        }else {
+            isExist = false;
+        }
+        return isExist;
     }
 
 }

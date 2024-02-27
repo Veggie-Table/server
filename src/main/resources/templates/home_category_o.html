@@ -48,15 +48,6 @@
         <div class="banner_font" style="font-size: 12px; font-weight: 300; margin-top: 10px">: 든든하고 익숙한 한국의 요리</div>
     </div>
 
-    <!--배너이미지-->
-    <script>
-        const swiper = new Swiper('.swiper', {
-            // Optional parameters
-            direction: 'vertical',
-            loop: false,
-        });
-    </script>
-
     <div class="sticky-option">
         <div class = align>
             <form action="#">
@@ -179,48 +170,3 @@
 </section>
 </body>
 </html>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const tabSwitches = document.querySelectorAll('.tab-switch');
-        const restaurantSegments = document.querySelectorAll('.rest_Segment');
-
-        tabSwitches.forEach(function(tabSwitch, index) {
-            tabSwitch.addEventListener('click', function() {
-                const selectedCategory = tabSwitch.getAttribute('for');
-                filterRestaurants(selectedCategory);
-            });
-        });
-
-        function filterRestaurants(category) {
-            // 서버로 AJAX 요청 보내기
-            fetch('/category?category=' + category)
-                .then(response => response.json())
-                .then(data => {
-                    // 서버에서 받아온 데이터로 화면 업데이트
-                    updateRestaurantList(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching data:', error);
-                });
-        }
-
-        function updateRestaurantList(restaurants) {
-            restaurantSegments.forEach(function(restaurantSegment, index) {
-                const categoryLabel = restaurantSegment.querySelector('.frame b').innerText;
-
-                if (restaurants.length > 0 && categoryLabel === restaurants[0].category) {
-                    // 해당 카테고리에 해당하는 음식점 리스트 업데이트
-                    const restaurant = restaurants.shift();  // 리스트에서 첫 번째 음식점을 가져옴
-
-                    // 화면 업데이트 (텍스트, 이미지 등)
-                    restaurantSegment.querySelector('.frame div').innerText = restaurant.rName;
-                    // 다른 필요한 업데이트도 동일한 방식으로 처리
-
-                    restaurantSegment.style.display = 'block';
-                } else {
-                    restaurantSegment.style.display = 'none';
-                }
-            });
-        }
-    });
-</script>
