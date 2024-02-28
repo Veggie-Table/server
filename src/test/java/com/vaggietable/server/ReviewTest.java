@@ -47,4 +47,5 @@ public class ReviewTest {
                 .andExpect(status().isOk());
 
     }
+    //Error creating bean with name 'customOAuth2UserService' -> @ComponentScan 어노테이션을 사용해서 빈으로 등록해준다.
 }

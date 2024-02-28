@@ -4,8 +4,10 @@ import com.vaggietable.server.domain.User;
 import com.vaggietable.server.dto.NicknameDto;
 import com.vaggietable.server.dto.ReviewRequestDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.context.annotation.ComponentScan;
 
 @Mapper
+@ComponentScan
 public interface UserMapper {
     //로그인 & 회원가입
     User findByEmail(String email);

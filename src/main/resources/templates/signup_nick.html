@@ -34,54 +34,63 @@
         </div>
         <input type="submit" value="시작하기" class="start_btn" id="start_btn">
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $("#nickname").on("input", function() {
+                countChar(this);
+            });
+
+            $("#start_btn").on("click", function() {
+                checkNickname();
+            });
+        });
+
         function countChar(input) {
             var max = 6;
-            var current = input.value.length;
-            var checkNickname = document.getElementById("checkNickname");
+            var current = $(input).val().length;
+            var checkNickname = $("#checkNickname");
 
-            document.getElementById("countChar").textContent = current + "/" + max;
+            $("#countChar").text(current + "/" + max);
 
-            var startBtn = document.getElementById("start_btn");
+            var startBtn = $("#start_btn");
             if (current >= 2 && current <= max) {
-                startBtn.classList.add("active");
-                startBtn.classList.remove("disabled");
-                checkNickname.textContent = "2자 ~ 6자 사이로 입력해주세요.";
+                startBtn.addClass("active").removeClass("disabled");
+                checkNickname.text("2자 ~ 6자 사이로 입력해주세요.").css("color", "#326144");
             } else {
-                checkNickname.textContent = "두 글자 이상 입력해주세요";
-                checkNickname.style.color = "#326144";
-                startBtn.classList.remove("active");
-                startBtn.setAttribute("disabled", "disabled");
+                checkNickname.text("두 글자 이상 입력해주세요").css("color", "#326144");
+                startBtn.removeClass("active").addClass("disabled").prop("disabled", true);
             }
         }
 
         function checkNickname() {
-            var nickname = document.getElementById("nickname").value;
+            var nickname = $("#nickname").val();
 
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/checkNickname", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
+            if (nickname.length < 2) {
+                $("#checkNickname").text("두 글자 이상 입력해주세요").css("color", "#326144");
+                return; // 길이가 2글자 미만인 경우 요청을 보내지 않고 종료
+            }
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        var checkNickname = document.getElementById("checkNickname");
-                        if (response.exists) {
-                            checkNickname.textContent = "이미 존재하는 닉네임입니다.";
-                        } else {
-                            checkNickname.textContent = "사용 가능한 닉네임입니다.";
-                        }
+            $.ajax({
+                type: "POST",
+                url: "/checkNickname",
+                contentType: "application/json",
+                data: JSON.stringify({ nickname: nickname }),
+                success: function(response) {
+                    if (response.exists) {
+                        $("#checkNickname").text("이미 존재하는 닉네임입니다.");
                     } else {
-                        console.error("서버 오류:", xhr.status);
+                        $("#checkNickname").text("사용 가능한 닉네임입니다.");
                     }
+                },
+                error: function(xhr, status, error) {
+                    console.error("서버 오류:", xhr.status);
                 }
-            };
-
-            var data = JSON.stringify({ nickname: nickname });
-            xhr.send(data);
+            });
         }
     </script>
+
 </section>
 
 </body>

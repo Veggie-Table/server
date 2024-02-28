@@ -3,6 +3,7 @@ import com.vaggietable.server.domain.User;
 import com.vaggietable.server.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -17,7 +18,6 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final UserMapper userMapper;
     private final HttpSession httpSession;

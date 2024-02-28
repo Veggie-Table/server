@@ -10,5 +10,4 @@ public class ReviewRequestDto {
     private String email;
     private String content;
     private double score;
-
 }
