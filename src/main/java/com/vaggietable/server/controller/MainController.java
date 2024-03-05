@@ -80,11 +80,13 @@ public class MainController {
         return ResponseEntity.ok("리뷰작성완료");
     }
 
+
+
     @PostMapping("/restaurant")
     public ResponseEntity<String> saveRestaurant(@RequestBody RestaurantSaveRequestDto dto){
         mainService.saveRestaurantInfo(dto);
         return ResponseEntity.ok("식당정보 등록 완료");
-    }
+    } //아직 지도 api 연결하기 전이라 더미데이터로 식당정보 등록하기 위해 만든 api 입니다
 
     @GetMapping("/category")
     public ResponseEntity<?> findCategory(@RequestParam String category){

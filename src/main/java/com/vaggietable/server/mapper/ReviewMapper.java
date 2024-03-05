@@ -4,4 +4,5 @@ import com.vaggietable.server.dto.ReviewRequestDto;
 
 public interface ReviewMapper {
      void saveReview(ReviewRequestDto dto);
+     void updateReview(ReviewRequestDto dto);
 }
