@@ -1,7 +1,7 @@
 package com.vaggietable.server;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vaggietable.server.config.auth.CustomOAuth2UserService;
+import com.vaggietable.server.service.CustomOAuth2UserService;
 import com.vaggietable.server.controller.MainController;
 import com.vaggietable.server.dto.ReviewRequestDto;
 import com.vaggietable.server.service.MainService;

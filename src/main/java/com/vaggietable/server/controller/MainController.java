@@ -38,7 +38,6 @@ public class MainController {
     public String home_html() {
         return "home_login_x";
     }
-
     @GetMapping("/signup")
     public String signup() {
         return "signup";
