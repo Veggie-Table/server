@@ -4,6 +4,7 @@
 
     <insert id="save"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO `user` (`name`,`email`,`role`,`username`) VALUES(#{name}, #{email},#{role},#{username})
+            ON DUPLICATE KEY UPDATE `email` = #{email}, `name` = #{name}
     </insert>
 
     <select id="findByEmail" resultType="com.vaggietable.server.domain.User">
@@ -32,7 +33,7 @@
         WHERE `email` = #{email}
     </select>
 
-    <select id="findByUsername" resultType="String">
+    <select id="findByUsername" resultType="com.vaggietable.server.dto.UserDTO">
         SELECT `name`,`email`,`role` FROM `user`
         WHERE `username` = #{username}
     </select>

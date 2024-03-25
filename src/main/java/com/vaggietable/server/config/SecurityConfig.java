@@ -44,8 +44,9 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                         .antMatchers("/").permitAll()
+                        .antMatchers("/signup").permitAll()
                         .anyRequest().authenticated());
-        //루트는 permit을 all로 해주고 나머지는 로그인을 해야 접근할 수 있도록
+        //루트랑 회원가입은 permit을 all로 해주고 나머지는 로그인을 해야 접근할 수 있도록
         //requestMatchers() 메서드는 Spring Security 5에서 삭제되었으며, 대신 antMatchers() 메서드를 사용
 
         //세션 설정 : STATELESS
