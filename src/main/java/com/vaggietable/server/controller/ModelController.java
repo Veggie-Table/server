@@ -1,10 +1,13 @@
 package com.vaggietable.server.controller;
 
 import com.vaggietable.server.domain.User;
+import com.vaggietable.server.dto.CustomOAuth2User;
 import com.vaggietable.server.dto.RestaurantResponseDto;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
 import com.vaggietable.server.service.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,13 +27,6 @@ public class ModelController {
         this.mainService = mainService;
     }
 
-    @GetMapping("/home_gps_o")
-    public String home_gps_o (Model model){
-        User user = userMapper.findByEmail(userService.getCurrentUserEmail());
-        String nickname = user.getNickname();
-        model.addAttribute("nickname", nickname);
-        return "home_gps_o";
-    }
 
     @GetMapping("/category")
     public String showRestaurantsByCategory(@RequestParam String category, Model model) {

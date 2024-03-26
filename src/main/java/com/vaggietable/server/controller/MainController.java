@@ -5,14 +5,19 @@ import com.vaggietable.server.dto.NicknameDto;
 import com.vaggietable.server.dto.RestaurantResponseDto;
 import com.vaggietable.server.dto.RestaurantSaveRequestDto;
 import com.vaggietable.server.dto.ReviewRequestDto;
+import com.vaggietable.server.jwt.JWTUtil;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
 import com.vaggietable.server.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,12 +54,27 @@ public class MainController {
     }
 
     @PostMapping("/saveNickname")
-    public String saveNickname(@RequestParam String nickname) {
+    public String saveNickname(@RequestParam String nickname, RedirectAttributes attributes) {
         User user = userMapper.findByEmail(userService.getCurrentUserEmail());
         NicknameDto dto = new NicknameDto();
         dto.setEmail(user.getEmail());
         dto.setNickname(nickname);
         userService.saveNickname(dto);
+
+        attributes.addAttribute("nickname", nickname); // 닉네임을 쿼리 매개변수로 전달
+
+        return "redirect:/home_gps_o";
+    }
+    @GetMapping("/home_gps_o")
+    public String home(Model model, @RequestParam(name = "nickname", required = false) String nickname) {
+        // 다른 정보를 가져오는 로직
+        // 예: 가장 가까운 맛집 정보 가져오기 등
+        if (nickname != null) {
+            model.addAttribute("nickname", nickname);
+        }
+        // 다른 정보도 모델에 추가
+        // model.addAttribute("someOtherData", someOtherData);
+
         return "home_gps_o";
     }
 
