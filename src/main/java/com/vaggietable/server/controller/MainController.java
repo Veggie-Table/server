@@ -12,15 +12,11 @@ import com.vaggietable.server.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +25,7 @@ import java.util.Map;
 public class MainController {
     private final UserMapper userMapper;
     private final UserService userService;
+
 
     private  final MainService mainService;
 
@@ -52,6 +49,14 @@ public class MainController {
     public String signup_nick() {
         return "signup_nick";
     }
+    @PostMapping("/checkNickname")
+    public ResponseEntity<Map<String, Boolean>> checkNickname(@RequestBody Map<String, String> request) {
+        String nickname = request.get("nickname");
+        boolean exists = userService.checkNickname(nickname);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
 
     @PostMapping("/saveNickname")
     public String saveNickname(@RequestParam String nickname, RedirectAttributes attributes) {
@@ -66,7 +71,7 @@ public class MainController {
         return "redirect:/home_gps_o";
     }
     @GetMapping("/home_gps_o")
-    public String home(Model model, @RequestParam(name = "nickname", required = false) String nickname) {
+    public String home(Model model, @RequestParam(name = "nickname") String nickname) {
         // 다른 정보를 가져오는 로직
         // 예: 가장 가까운 맛집 정보 가져오기 등
         if (nickname != null) {
@@ -77,16 +82,6 @@ public class MainController {
 
         return "home_gps_o";
     }
-
-    @PostMapping("/checkNickname")
-    public ResponseEntity<Map<String, Boolean>> checkNickname(@RequestBody Map<String, String> request) {
-        String nickname = request.get("nickname");
-        boolean exists = userService.checkNickname(nickname);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("exists", exists);
-        return ResponseEntity.ok(response);
-    }
-
     @PostMapping("/review")
     public ResponseEntity<String> saveReview(ReviewRequestDto dto){
         User user = userMapper.findByEmail(userService.getCurrentUserEmail());
@@ -105,7 +100,12 @@ public class MainController {
     public ResponseEntity<String> saveRestaurant(@RequestBody RestaurantSaveRequestDto dto){
         mainService.saveRestaurantInfo(dto);
         return ResponseEntity.ok("식당정보 등록 완료");
-    } //아직 지도 api 연결하기 전이라 더미데이터로 식당정보 등록하기 위해 만든 api 입니다
+    }
+
+    @GetMapping("/home_category_o")
+    public String category() {
+        return "/home_category_o";
+    }
 
     @GetMapping("/category")
     public ResponseEntity<?> findCategory(@RequestParam String category){

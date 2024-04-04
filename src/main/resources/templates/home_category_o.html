@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
     <link
@@ -42,6 +42,31 @@
             </div>
         </div>
     </div>
+    <script>
+        // 카테고리 선택 이벤트 리스너 등록
+        document.querySelectorAll('.tab-switch').forEach(function(tabSwitch) {
+            tabSwitch.addEventListener('change', function(event) {
+                // 선택한 카테고리 값 가져오기
+                var category = event.target.nextElementSibling.textContent; // label 요소의 텍스트 가져오기
+
+                // HTTP 요청 보내기
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/category?category=' + encodeURIComponent(category)); // GET 요청 URL 설정
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            // 성공적으로 응답을 받았을 때 처리할 코드
+                            console.log(xhr.responseText);
+                        } else {
+                            // 응답이 실패했을 때 처리할 코드
+                            console.error('요청 실패: ' + xhr.status);
+                        }
+                    }
+                };
+                xhr.send(); // 요청 보내기
+            });
+        });
+    </script>
     <!--배너이미지-->
     <div class="banner_img">
         <div class="banner_font" style="font-size: 20px; font-weight: 700">한식</div>

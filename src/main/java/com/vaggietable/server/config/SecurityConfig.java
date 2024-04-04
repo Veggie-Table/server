@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -67,7 +68,7 @@ public class SecurityConfig {
                 .httpBasic((auth) -> auth.disable());
         //JWTFilter 추가
         http
-                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(new JWTFilter(jwtUtil), OAuth2LoginAuthenticationFilter.class);
 
 
         //oauth2
@@ -81,6 +82,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                         .antMatchers("/").permitAll()
+                        .antMatchers("/reissue").permitAll()
                         .anyRequest().authenticated());
         //루트랑 회원가입은 permit을 all로 해주고 나머지는 로그인을 해야 접근할 수 있도록
         //requestMatchers() 메서드는 Spring Security 5에서 삭제되었으며, 대신 antMatchers() 메서드를 사용
