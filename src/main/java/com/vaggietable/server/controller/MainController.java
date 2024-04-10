@@ -5,7 +5,6 @@ import com.vaggietable.server.dto.NicknameDto;
 import com.vaggietable.server.dto.RestaurantResponseDto;
 import com.vaggietable.server.dto.RestaurantSaveRequestDto;
 import com.vaggietable.server.dto.ReviewRequestDto;
-import com.vaggietable.server.jwt.JWTUtil;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
 import com.vaggietable.server.service.UserService;

@@ -2,7 +2,6 @@ package com.vaggietable.server.service;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.vaggietable.server.domain.User;
-import com.vaggietable.server.dto.CustomOAuth2User;
 import com.vaggietable.server.dto.NicknameDto;
 import com.vaggietable.server.mapper.UserMapper;
 import org.springframework.security.core.Authentication;

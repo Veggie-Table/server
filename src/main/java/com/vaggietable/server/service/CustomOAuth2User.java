@@ -1,6 +1,6 @@
-package com.vaggietable.server.dto;
+package com.vaggietable.server.service;
 
-import io.jsonwebtoken.Jwts;
+import com.vaggietable.server.dto.OAuth2Response;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -10,11 +10,13 @@ import java.util.Map;
 
 public class CustomOAuth2User implements OAuth2User {
 
-    private final UserDTO userDTO;
+    private final OAuth2Response oAuth2Response;
+    private final String role;
 
-    public CustomOAuth2User(UserDTO userDTO) {
+    public CustomOAuth2User(OAuth2Response oAuth2Response, String role) {
 
-        this.userDTO = userDTO;
+        this.oAuth2Response = oAuth2Response;
+        this.role = role;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class CustomOAuth2User implements OAuth2User {
             @Override
             public String getAuthority() {
 
-                return userDTO.getRole();
+                return role;
             }
         });
 
@@ -43,15 +45,16 @@ public class CustomOAuth2User implements OAuth2User {
     @Override
     public String getName() {
 
-        return userDTO.getName();
+        return oAuth2Response.getName();
     }
 
     public String getUsername() {
 
-        return userDTO.getUsername();
-    }
-    public String getEmail(){
-        return  userDTO.getEmail();
+        return oAuth2Response.getProvider()+" "+oAuth2Response.getProviderId();
     }
 
+    public String getEmail(){
+        return oAuth2Response.getEmail();
+    }
 }
+

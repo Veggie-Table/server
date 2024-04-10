@@ -1,7 +1,7 @@
 package com.vaggietable.server.controller;
 
 import com.vaggietable.server.domain.User;
-import com.vaggietable.server.dto.CustomOAuth2User;
+import com.vaggietable.server.service.CustomOAuth2User;
 import com.vaggietable.server.dto.RestaurantResponseDto;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
