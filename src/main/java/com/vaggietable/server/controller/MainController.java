@@ -1,10 +1,7 @@
 package com.vaggietable.server.controller;
 
 import com.vaggietable.server.domain.User;
-import com.vaggietable.server.dto.NicknameDto;
-import com.vaggietable.server.dto.RestaurantResponseDto;
-import com.vaggietable.server.dto.RestaurantSaveRequestDto;
-import com.vaggietable.server.dto.ReviewRequestDto;
+import com.vaggietable.server.dto.*;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
 import com.vaggietable.server.service.UserService;
@@ -48,13 +45,23 @@ public class MainController {
     public String signup_nick() {
         return "signup_nick";
     }
+
     @PostMapping("/checkNickname")
-    public ResponseEntity<Map<String, Boolean>> checkNickname(@RequestBody Map<String, String> request) {
+    public ResponseEntity<Map<String, Object>> checkNickname(@RequestBody Map<String, String> request) {
         String nickname = request.get("nickname");
         boolean exists = userService.checkNickname(nickname);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("exists", exists);
-        return ResponseEntity.ok(response);
+        Map<String, Object> response = new HashMap<>();
+        if(!exists){
+            response.put("exists", exists);
+            response.put("success",true);
+            response.put("message","닉네임 사용 가능");
+            return ResponseEntity.ok(response);
+        }
+        else{
+            response.put("success",false);
+            response.put("message","이미 사용중인 닉네임");
+            return ResponseEntity.status(403).body(response);
+        }
     }
 
     @PostMapping("/saveNickname")
@@ -69,6 +76,7 @@ public class MainController {
 
         return "redirect:/home_gps_o";
     }
+
     @GetMapping("/home_gps_o")
     public String home(Model model, @RequestParam(name = "nickname") String nickname) {
         // 다른 정보를 가져오는 로직
@@ -82,17 +90,47 @@ public class MainController {
         return "home_gps_o";
     }
     @PostMapping("/review")
-    public ResponseEntity<String> saveReview(ReviewRequestDto dto){
+    public  ResponseEntity<Map<String, Object>> saveReview(ReviewRequestDto dto){
         User user = userMapper.findByEmail(userService.getCurrentUserEmail());
-        ReviewRequestDto requestDto = new ReviewRequestDto();
-        requestDto.setEmail(user.getEmail());
-        requestDto.setContent(dto.getContent());
-        requestDto.setScore(dto.getScore());
-        requestDto.setRId(dto.getRId());
-        mainService.saveReview(dto);
-        return ResponseEntity.ok("리뷰작성완료");
+        Map<String, Object> response = new HashMap<>();
+        if (user.getEmail() == null ||  Double.valueOf(dto.getScore()) == null || dto.getRId() == null) {
+            // 필요한 필드가 비어있는 경우
+            response.put("success", false);
+            response.put("message", "데이터가 비어있음");
+            return ResponseEntity.badRequest().body(response);
+        }else {
+            Long reviewId = mainService.saveReview(dto);
+            response.put("success", true);
+            response.put("message", "리뷰 작성 완료. reviewId :" + reviewId);
+            return ResponseEntity.ok(response);
+        }
     }
+    @PutMapping("/review")
+    public  ResponseEntity<Map<String, Object>> updateReview(ReviewUpdateDto dto){
+        Long reviewId = dto.getReviewId();
+        ReviewUpdateDto reviewUpdateDto = new ReviewUpdateDto();
+        Map<String, Object> response = new HashMap<>();
+        if(reviewId!=null){
+            reviewUpdateDto.setContent(dto.getContent());
+            reviewUpdateDto.setScore(dto.getScore());
+            response.put("success",true);
+            response.put("message","리뷰수정완료");
+            return ResponseEntity.ok().body(response);
+        }
+        else{
+            response.put("success",false);
+            response.put("message","해당하는 리뷰가 존재하지 않음");
+            return ResponseEntity.status(404).body(response);
+        }
 
+    }
+/*
+    @DeleteMapping ("/review")
+    public ResponseEntity<Map<String,Object>> deleteReview (Long reviewId){
+        Map<String, Object> response = new HashMap<>();
+
+    }
+*/
 
 
     @PostMapping("/restaurant")
@@ -109,7 +147,20 @@ public class MainController {
     @GetMapping("/category")
     public ResponseEntity<?> findCategory(@RequestParam String category){
         List<RestaurantResponseDto> responseDtoList = mainService.findCategory(category);
-        return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
+        Map<String, Object> response = new HashMap<>();
+        try {
+            if (responseDtoList.isEmpty()) {
+                response.put("success", false);
+                response.put("message", "해당 식당 없음");
+                return ResponseEntity.status(404).body(response);
+            } else {
+                return new ResponseEntity<>(responseDtoList, HttpStatus.OK);
+            }
+        } catch (IllegalArgumentException e){
+            response.put("success",false);
+            response.put("message", "카테고리가 존재하지 않음");
+            return ResponseEntity.status(404).body(response);
+        }
     }
 
     @GetMapping("/byViews")

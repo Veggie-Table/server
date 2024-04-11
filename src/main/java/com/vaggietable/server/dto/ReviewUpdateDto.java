@@ -5,19 +5,12 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
-
-
 @Setter
 @Getter
-public class ReviewRequestDto {
-
+public class ReviewUpdateDto {
     @Id
     private Long reviewId;
-    private Long rId;
-    private String email;
     private String content;
     private double score;
-    private LocalDateTime writtenDate;
-
-
+    private String email;
 }
