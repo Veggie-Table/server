@@ -56,11 +56,12 @@ public class MainService {
     }
 
     public void updateReview(ReviewUpdateDto dto){
+        User user = userMapper.findByEmail(userService.getCurrentUserEmail());
         ReviewUpdateDto updateDto = new ReviewUpdateDto();
         updateDto.setReviewId(dto.getReviewId());
         updateDto.setScore(dto.getScore());
         updateDto.setContent(dto.getContent());
-        updateDto.setEmail(dto.getEmail());
+        updateDto.setEmail(user.getEmail());
         reviewMapper.updateReview(updateDto);
     }
 

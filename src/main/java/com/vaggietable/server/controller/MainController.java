@@ -108,11 +108,9 @@ public class MainController {
     @PutMapping("/review")
     public  ResponseEntity<Map<String, Object>> updateReview(ReviewUpdateDto dto){
         Long reviewId = dto.getReviewId();
-        ReviewUpdateDto reviewUpdateDto = new ReviewUpdateDto();
         Map<String, Object> response = new HashMap<>();
         if(reviewId!=null){
-            reviewUpdateDto.setContent(dto.getContent());
-            reviewUpdateDto.setScore(dto.getScore());
+            mainService.updateReview(dto);
             response.put("success",true);
             response.put("message","리뷰수정완료");
             return ResponseEntity.ok().body(response);

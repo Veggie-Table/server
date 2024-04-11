@@ -10,7 +10,7 @@
         update `review`
         set `content` = #{content},
             `score` = #{score}
-        where rId = #{rId}
+        where reviewId = #{reviewId}
           and email = #{email}
     </update>
 </mapper>
