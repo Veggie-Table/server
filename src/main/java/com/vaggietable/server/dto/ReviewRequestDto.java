@@ -15,6 +15,7 @@ public class ReviewRequestDto {
     private Long reviewId;
     private Long rId;
     private String username;
+    private String nickname;
     private String content;
     private double score;
     private LocalDateTime writtenDate;

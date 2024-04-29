@@ -43,6 +43,7 @@ public class MainService {
         UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
         ReviewRequestDto requestDto = new ReviewRequestDto();
         requestDto.setUsername(user.getUsername());
+        requestDto.setNickname(user.getNickname());
         requestDto.setContent(dto.getContent());
         requestDto.setScore(dto.getScore());
         requestDto.setRId(dto.getRId());

@@ -91,7 +91,6 @@ public class MainController {
     }
     @PostMapping("/review")
     public  ResponseEntity<Map<String, Object>> saveReview(@RequestBody ReviewRequestDto dto){
-        UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
         Map<String, Object> response = new HashMap<>();
         if (dto.getContent()==null|| Double.valueOf(dto.getScore()) == null || dto.getRId() == null) {
             // 필요한 필드가 비어있는 경우
@@ -127,20 +126,28 @@ public class MainController {
 
     }
 
-/*    @GetMapping("/rReview/{rId}")
+    @GetMapping("/rReview/{rId}")
     public ResponseEntity<Map<String,Object>> findRestaurantReview (@RequestParam Long rId){
         List<ReviewResponseDto> responseDtoList = mainService.findRestaurantReview(rId);
         Map<String, Object> response = new HashMap<>();
+        if(responseDtoList.isEmpty()){
+            response.put("success",false);
+            response.put("message","해당 식당의 리뷰가 존재하지 않음");
+            return ResponseEntity.ok(response);
+        }else {
+            response.put("success",true);
+            response.put("reviews",responseDtoList);
+            return ResponseEntity.ok(response);
+        }
 
-    }*/
-/*    @DeleteMapping ("/review/{rId}")
-    public ResponseEntity<Map<String,Object>> deleteReview (@RequestBody ReviewDeleteDto dto ){
-        User user = userMapper.findByEmail(userService.getCurrentUserEmail());
-        dto.setEmail(user.getEmail());
+    }
+ /*   @DeleteMapping ("/review/{rId}")
+    public ResponseEntity<Map<String,Object>> deleteReview (@RequestBody ReviewDeleteDto dto){
+
         Map<String, Object> response = new HashMap<>();
 
-    }*/
-    //+ 사용자가 작성한 리뷰 전체보기
+    }
+    //+ 사용자가 작성한 리뷰 전체보기*/
 
 
     @PostMapping("/restaurant")

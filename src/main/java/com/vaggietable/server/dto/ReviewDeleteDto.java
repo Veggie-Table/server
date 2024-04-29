@@ -9,6 +9,6 @@ import org.springframework.data.annotation.Id;
 public class ReviewDeleteDto {
     @Id
     private Long reviewId;
-    private String email;
+    private String username;
     
 }
