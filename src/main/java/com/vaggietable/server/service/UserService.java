@@ -24,11 +24,11 @@ public class UserService {
         userMapper.saveNickname(dto);
     }
 
-    public String getCurrentUserEmail() {
+    public String getCurrentUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof CustomOAuth2User) {
             CustomOAuth2User customOAuth2User = (CustomOAuth2User) authentication.getPrincipal();
-            return customOAuth2User.getEmail();
+            return customOAuth2User.getUsername();
         }
         return null;
     }

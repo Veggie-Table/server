@@ -4,8 +4,8 @@ import lombok.Setter;
 
 @NoArgsConstructor
 @Setter
-public class ScrapRequestDto {
+public class BookmarkRequestDto {
     private String email;
-    private Long scrapId;
+    private Long bookmarkId;
     private Long rId;
 }

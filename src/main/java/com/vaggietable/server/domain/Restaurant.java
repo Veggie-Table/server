@@ -18,11 +18,12 @@ public class Restaurant {
 
     private double latitude;
     private double longitude;
-    private long scrapId;
+    private long bookmarkId;
     private List<Review> reviewId;
     private String category;
     private String address;
     private String menu1;
     private String menu2;
     private String rName;
+    private int views;
 }

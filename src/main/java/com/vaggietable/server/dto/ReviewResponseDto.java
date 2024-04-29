@@ -6,9 +6,10 @@ import java.time.LocalDateTime;
 
 
 @Getter
-public class reviewResponseDto {
+public class ReviewResponseDto {
     private String content;
-    private float score;
+    private double score;
+    private double scoreAvg;
     private LocalDateTime writtenDate;
 
 }

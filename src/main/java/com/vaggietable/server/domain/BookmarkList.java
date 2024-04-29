@@ -10,9 +10,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ScrapList {
+public class BookmarkList {
     @Id
-    private Long scrapId;
-    private String email;
+    private Long bookmarkId;
+    private String username;
     private List<Restaurant> rId;
+    private boolean status; //false -> 북마크 해제 / true -> 북마크 추가
 }

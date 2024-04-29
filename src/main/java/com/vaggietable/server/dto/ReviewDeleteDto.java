@@ -4,14 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDateTime;
 @Setter
 @Getter
-public class ReviewUpdateDto {
+public class ReviewDeleteDto {
     @Id
     private Long reviewId;
-    private String username;
-    private String content;
-    private double score;
     private String email;
+    
 }

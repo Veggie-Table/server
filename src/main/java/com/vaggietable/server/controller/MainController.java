@@ -66,7 +66,7 @@ public class MainController {
 
     @PostMapping("/saveNickname")
     public String saveNickname(@RequestParam String nickname, RedirectAttributes attributes) {
-        User user = userMapper.findByEmail(userService.getCurrentUserEmail());
+        UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
         NicknameDto dto = new NicknameDto();
         dto.setEmail(user.getEmail());
         dto.setNickname(nickname);
@@ -90,10 +90,10 @@ public class MainController {
         return "home_gps_o";
     }
     @PostMapping("/review")
-    public  ResponseEntity<Map<String, Object>> saveReview(ReviewRequestDto dto){
-        User user = userMapper.findByEmail(userService.getCurrentUserEmail());
+    public  ResponseEntity<Map<String, Object>> saveReview(@RequestBody ReviewRequestDto dto){
+        UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
         Map<String, Object> response = new HashMap<>();
-        if (user.getEmail() == null ||  Double.valueOf(dto.getScore()) == null || dto.getRId() == null) {
+        if (dto.getContent()==null|| Double.valueOf(dto.getScore()) == null || dto.getRId() == null) {
             // 필요한 필드가 비어있는 경우
             response.put("success", false);
             response.put("message", "데이터가 비어있음");
@@ -101,15 +101,19 @@ public class MainController {
         }else {
             Long reviewId = mainService.saveReview(dto);
             response.put("success", true);
-            response.put("message", "리뷰 작성 완료. reviewId :" + reviewId);
+            response.put("message", "리뷰 작성 완료." );
+            response.put("reviewId", reviewId);
             return ResponseEntity.ok(response);
         }
+
     }
     @PutMapping("/review")
-    public  ResponseEntity<Map<String, Object>> updateReview(ReviewUpdateDto dto){
+    public  ResponseEntity<Map<String, Object>> updateReview(@RequestBody ReviewUpdateDto dto){
         Long reviewId = dto.getReviewId();
+        UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
+        dto.setUsername(user.getUsername());
         Map<String, Object> response = new HashMap<>();
-        if(reviewId!=null){
+        if(reviewId!=null||user!=null){
             mainService.updateReview(dto);
             response.put("success",true);
             response.put("message","리뷰수정완료");
@@ -122,13 +126,21 @@ public class MainController {
         }
 
     }
-/*
-    @DeleteMapping ("/review")
-    public ResponseEntity<Map<String,Object>> deleteReview (Long reviewId){
+
+/*    @GetMapping("/rReview/{rId}")
+    public ResponseEntity<Map<String,Object>> findRestaurantReview (@RequestParam Long rId){
+        List<ReviewResponseDto> responseDtoList = mainService.findRestaurantReview(rId);
         Map<String, Object> response = new HashMap<>();
 
-    }
-*/
+    }*/
+/*    @DeleteMapping ("/review/{rId}")
+    public ResponseEntity<Map<String,Object>> deleteReview (@RequestBody ReviewDeleteDto dto ){
+        User user = userMapper.findByEmail(userService.getCurrentUserEmail());
+        dto.setEmail(user.getEmail());
+        Map<String, Object> response = new HashMap<>();
+
+    }*/
+    //+ 사용자가 작성한 리뷰 전체보기
 
 
     @PostMapping("/restaurant")
