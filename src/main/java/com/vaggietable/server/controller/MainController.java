@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+
 @Slf4j
 @Controller
 public class MainController {
@@ -141,13 +143,35 @@ public class MainController {
         }
 
     }
- /*   @DeleteMapping ("/review/{rId}")
-    public ResponseEntity<Map<String,Object>> deleteReview (@RequestBody ReviewDeleteDto dto){
-
+    @GetMapping("/myReview")
+    public ResponseEntity<Map<String,Object>> findmyReview (String username){
+        List<ReviewResponseDto> responseDtoList = mainService.findmyReview(username);
         Map<String, Object> response = new HashMap<>();
+        if(responseDtoList.isEmpty()){
+            response.put("success",false);
+            response.put("message","해당 식당의 리뷰가 존재하지 않음");
+            return ResponseEntity.ok(response);
+        }else {
+            response.put("success",true);
+            response.put("reviews",responseDtoList);
+            return ResponseEntity.ok(response);
+        }
 
     }
-    //+ 사용자가 작성한 리뷰 전체보기*/
+    @DeleteMapping ("/review{reviewId}")
+    public ResponseEntity<Map<String,Object>> deleteReview (@RequestBody ReviewDeleteDto dto){
+        Map<String, Object> response = new HashMap<>();
+        if(dto.getReviewId()==null){
+            response.put("success",false);
+            response.put("message","해당하는 리뷰가 없습니다.");
+            return ResponseEntity.status(404).body(response);
+        }else {
+            mainService.deleteReview(dto);
+            response.put("success",true);
+            response.put("message","리뷰가 삭제되었습니다.");
+            return ResponseEntity.ok(response);
+        }
+    }
 
 
     @PostMapping("/restaurant")
@@ -185,5 +209,6 @@ public class MainController {
         List<RestaurantResponseDto> responseDtoList = mainService.getByViewsOrder();
         return new ResponseEntity<>(responseDtoList,HttpStatus.OK);
     } //조회순 정렬
+
 
 }

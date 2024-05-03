@@ -64,6 +64,19 @@ public class MainService {
         return reviewMapper.findRestaurantReview(rId);
     }
 
+    public List<ReviewResponseDto> findmyReview(String username){
+        UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
+        username = user.getUsername();
+        return reviewMapper.findmyReview(username);
+    }
+
+    public void deleteReview(ReviewDeleteDto dto){
+        UserDTO user = userMapper.findByUsername(userService.getCurrentUsername());
+        dto.setUsername(user.getUsername());
+        dto.setReviewId(dto.getReviewId());
+        reviewMapper.deleteReview(dto);
+    }
+
 
     public List<RestaurantResponseDto> findCategory(String category){
         return restaurantMapper.findCategory(category);

@@ -1,5 +1,6 @@
 package com.vaggietable.server.mapper;
 
+import com.vaggietable.server.dto.ReviewDeleteDto;
 import com.vaggietable.server.dto.ReviewRequestDto;
 import com.vaggietable.server.dto.ReviewResponseDto;
 import com.vaggietable.server.dto.ReviewUpdateDto;
@@ -15,4 +16,9 @@ public interface ReviewMapper {
 
      @Select("select * from review where rID = #{rId}")
      List<ReviewResponseDto> findRestaurantReview(Long rId);
+
+     @Select("select * from review where username = #{username}")
+     List<ReviewResponseDto> findmyReview(String username);
+
+     void deleteReview(ReviewDeleteDto dto);
 }

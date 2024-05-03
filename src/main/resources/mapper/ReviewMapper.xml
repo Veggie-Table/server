@@ -11,6 +11,12 @@
         set `content` = #{content},
             `score` = #{score}
         where reviewId = #{reviewId}
-          and email = #{email}
+          and username = #{username}
     </update>
+
+    <delete id="deleteReview">
+        delete from `review`
+        where reviewId = #{reviewId}
+        and username = #{username}
+    </delete>
 </mapper>
