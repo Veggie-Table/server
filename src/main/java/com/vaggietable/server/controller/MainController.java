@@ -80,17 +80,12 @@ public class MainController {
 
     @GetMapping("/home_gps_o")
     public String home(Model model, @RequestParam(name = "nickname") String nickname) {
-        // 다른 정보를 가져오는 로직
-        // 예: 가장 가까운 맛집 정보 가져오기 등
-
         // 조회순으로 정렬된 맛집 정보 가져오기
         ResponseEntity<List<RestaurantResponseDto>> responseEntity = getByViewsOrder();
         List<RestaurantResponseDto> responseDtoList = responseEntity.getBody();
-
         // 최대 7위까지의 맛집 정보만 유지
         List<RestaurantResponseDto> top7Restaurants = responseDtoList.stream().limit(7).collect(Collectors.toList());
-
-        // 모델에 맛집 정보 추가
+        // 모델에 7위까지 맛집 정보 추가
         model.addAttribute("top7Restaurants", top7Restaurants);
 
         if (nickname != null) {

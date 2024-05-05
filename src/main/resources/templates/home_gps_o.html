@@ -156,24 +156,21 @@
     <div class="swiper2">
         <div class="swiper-wrapper">
             <!-- 반복 시작 -->
-            <div th:each="rank : ${#numbers.sequence(1, 7)}" class="swiper-slide">
+            <div th:each="restaurant, index : ${top7Restaurants}" class="swiper-slide">
                 <div class="popular">
                     <div class="popular_img"></div>
-                    <div class="rank"> <!-- 수정 -->
-                        <span th:text="${rank + '위'}"></span> <!-- 수정 -->
+                    <div class="rank">
+                        <span th:text="${index.index + 1 + '위'}"></span>
                     </div>
-                    <div class="popularInfo">식당이름
-                        <span class="VeganOption">
-                        <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
-                        <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
-                    </span>
-                        <span class="popular_Bookmarker">
-                        <input id="scrap_id1" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap(1)">
-                    </span>
+                    <div class="popularInfo">
+                        <span th:text="${restaurant.RName}"></span>
+                        <!-- 맛집 이름 -->
+                        <!-- 비건 옵션 등 추가 정보도 여기에 표시 -->
                     </div>
                     <div class="popular_place">
                         <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
-                        <span>식당위치</span>
+                        <span th:text="${restaurant.address}"></span>
+                        <!-- 맛집 위치 -->
                         <span class="popular_Score">
                         <img src="../static/images/Star.png" width="12" height="12" >
                         <span>5.0</span>
@@ -182,9 +179,11 @@
                     <div class="popular_menu">
                         <span style="font-weight: 700;">분류</span>
                         <span>·</span>
-                        <span>대표메뉴1</span>
+                        <span th:text="${restaurant.menu1}"></span>
+                        <!-- 대표 메뉴 1 -->
                         <span>·</span>
-                        <span>대표메뉴2</span>
+                        <span th:text="${restaurant.menu2}"></span>
+                        <!-- 대표 메뉴 2 -->
                     </div>
                 </div>
             </div>
