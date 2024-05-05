@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scale='no'"/>
-    <link rel="stylesheet" href="./home_gps_o.css">
+    <link rel="stylesheet" href="css/home_gps_o.css">
     <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -21,7 +21,7 @@
         <img src="../static/images/logo_green_tabbar.png" width="173.33" height="23" >
     </div>
     <div class="placeIcon">
-        <img src="../static/images/palce_icon.png" width="9.3" height="13" style="margin-right: 2.5px;float: left";>
+        <img src="../static/images/palce_icon.png" width="9.3" height="13" style="margin-right: 2.5px;float: left" ;>
         <span style="margin-left: 5px; display: block;">위치정보</span>
     </div>
     <div class="text1">
@@ -155,28 +155,29 @@
     </div>
     <div class="swiper2">
         <div class="swiper-wrapper">
-            <!-- 슬라이드 1 -->
-            <div class="swiper-slide">
+            <!-- 반복 시작 -->
+            <div th:each="rank : ${#numbers.sequence(1, 7)}" class="swiper-slide">
                 <div class="popular">
                     <div class="popular_img"></div>
-                    <div class="rank"> 1위 </div>
+                    <div class="rank"> <!-- 수정 -->
+                        <span th:text="${rank + '위'}"></span> <!-- 수정 -->
+                    </div>
                     <div class="popularInfo">식당이름
                         <span class="VeganOption">
-                    <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
-                    <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
-            </span>
-
-                        <span class="popular_Bookmarker" >
-               <input id="scrap_id1" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap(1)">
-            </span>
+                        <span style="width: 8px; height: 8px; background: #326144; border-radius: 90px;"></span>
+                        <span style="font-size: 8px;font-weight: 300;color: #8B8E8C;">비건</span>
+                    </span>
+                        <span class="popular_Bookmarker">
+                        <input id="scrap_id1" type="image" src="../static/images/Bookmark.png" width="16" height="16" border="0" onclick="saveScrap(1)">
+                    </span>
                     </div>
                     <div class="popular_place">
                         <img class="popular_placeIcon" src="../static/images/place.png" style="position: relative" width="12" height="12">
                         <span>식당위치</span>
                         <span class="popular_Score">
-                 <img src="../static/images/Star.png" width="12" height="12" >
-                 <span>5.0</span>
-         </span>
+                        <img src="../static/images/Star.png" width="12" height="12" >
+                        <span>5.0</span>
+                    </span>
                     </div>
                     <div class="popular_menu">
                         <span style="font-weight: 700;">분류</span>
@@ -185,11 +186,12 @@
                         <span>·</span>
                         <span>대표메뉴2</span>
                     </div>
-
                 </div>
             </div>
+            <!-- 반복 끝 -->
         </div>
     </div>
+
 
     <script>
         var cnt = 1;

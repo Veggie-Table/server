@@ -1,6 +1,5 @@
 package com.vaggietable.server.controller;
 
-import com.vaggietable.server.domain.User;
 import com.vaggietable.server.dto.*;
 import com.vaggietable.server.mapper.UserMapper;
 import com.vaggietable.server.service.MainService;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
@@ -76,13 +75,24 @@ public class MainController {
 
         attributes.addAttribute("nickname", nickname); // 닉네임을 쿼리 매개변수로 전달
 
-        return "redirect:/home_gps_o";
+        return "redirect:home_gps_o";
     }
 
     @GetMapping("/home_gps_o")
     public String home(Model model, @RequestParam(name = "nickname") String nickname) {
         // 다른 정보를 가져오는 로직
         // 예: 가장 가까운 맛집 정보 가져오기 등
+
+        // 조회순으로 정렬된 맛집 정보 가져오기
+        ResponseEntity<List<RestaurantResponseDto>> responseEntity = getByViewsOrder();
+        List<RestaurantResponseDto> responseDtoList = responseEntity.getBody();
+
+        // 최대 7위까지의 맛집 정보만 유지
+        List<RestaurantResponseDto> top7Restaurants = responseDtoList.stream().limit(7).collect(Collectors.toList());
+
+        // 모델에 맛집 정보 추가
+        model.addAttribute("top7Restaurants", top7Restaurants);
+
         if (nickname != null) {
             model.addAttribute("nickname", nickname);
         }
@@ -91,6 +101,7 @@ public class MainController {
 
         return "home_gps_o";
     }
+
     @PostMapping("/review")
     public  ResponseEntity<Map<String, Object>> saveReview(@RequestBody ReviewRequestDto dto){
         Map<String, Object> response = new HashMap<>();

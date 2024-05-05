@@ -25,5 +25,7 @@ public class Restaurant {
     private String menu1;
     private String menu2;
     private String rName;
+    private String tel;
     private int views;
+    private boolean option; // 1: 비건 0: 옵션
 }

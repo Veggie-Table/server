@@ -5,7 +5,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class BookmarkRequestDto {
-    private String email;
+    private String username;
     private Long bookmarkId;
     private Long rId;
 }

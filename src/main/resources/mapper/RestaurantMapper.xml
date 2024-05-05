@@ -36,7 +36,7 @@
                `menu2`,
                `rName`
         from `restaurant`
-        order by `click` desc
+        order by `views` desc
     </select>
 
 </mapper>
